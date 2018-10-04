@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Control panel</title>
+    <link rel="stylesheet" type="text/css"
+          href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+<div style="text-align: center">
+    <br/>
+
+    <form id="form_action" method="get">
+        <label for="user_select">Select user:</label>
+        <select id="user_select" class="form-group">
+            <option value="ricky">Ricky</option>
+            <option value="sam">Sam</option>
+        </select>
+        <label for="action_select">Select action:</label>
+        <select id="action_select" class="form-group" onchange="selectAction()">
+            <option value="next_page">Next Page</option>
+            <option value="set_page">Set Page</option>
+            <option value="set_location">Set Location</option>
+            <option value="show_tickets">Show Ticket</option>
+            <option value="grant_ticket">Grant Ticket</option>
+            <option value="open_football">Open Football</option>
+            <option value="next_step">Next step in case: grant ticket</option>
+        </select>
+
+        <div id="number_page_block" style="display: none">
+            <label for="number_page">Select page</label>
+            <select id="number_page">
+                <option value="0">1</option>
+                <option value="1">2</option>
+                <option value="2">3</option>
+                <option value="3">4</option>
+            </select>
+        </div>
+
+
+        <div id="location_block" style="display: none">
+            <label for="location">Select location</label>
+            <select id="location">
+                <option value="london">London</option>
+                <option value="dubai">Dubai</option>
+            </select>
+        </div>
+
+        <div id="grant_ticket_block" style="display: none">
+            <label for="grant_ticket">Select receive user</label>
+            <select id="grant_ticket">
+                <option value="sam">Sam</option>
+                <option value="ricky">Ricky</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success" onclick="doAction()">Ok</button>
+
+    </form>
+
+    <script>
+        var selectUserElement = document.getElementById("user_select");
+        var selectActionElement = document.getElementById("action_select");
+
+        var numberPageBlock = document.getElementById("number_page_block");
+        var numberPageElement = document.getElementById("number_page");
+
+        var locationBlock = document.getElementById("location_block");
+        var locationElement = document.getElementById("location");
+
+        var grantTicketBlock = document.getElementById("grant_ticket_block");
+        var grantTicketElement = document.getElementById("grant_ticket");
+
+        var formActionElement = document.getElementById("form_action");
+        function selectAction(){
+            hideOptionsBlocks();
+            let opt = selectActionElement.options[selectActionElement.selectedIndex];
+            switch(opt.value){
+                case "set_page":
+                    numberPageBlock.style.display = "";
+                    break;
+                case "set_location":
+                    locationBlock.style.display = "";
+                    break;
+                case "grant_ticket":
+                case "next_step":
+                    grantTicketBlock.style.display = "";
+                    break;
+            }
+        }
+
+        function hideOptionsBlocks() {
+            numberPageBlock.style.display = "none";
+            locationBlock.style.display = "none";
+            grantTicketBlock.style.display = "none";
+        }
+
+        function doAction() {
+            let username = selectUserElement.options[selectUserElement.selectedIndex].value;
+            let actionOpt = selectActionElement.options[selectActionElement.selectedIndex].value;
+            switch(actionOpt){
+                case "next_page":
+                    formActionElement.action = "/user/" + username + "/next_page";
+                    break;
+                case "set_page":
+                    let number = numberPageElement.options[numberPageElement.selectedIndex].value;
+                    formActionElement.action = "/user/" + username + "/set_page/" + number;
+                    break;
+                case "set_location":
+                    let nameLocation = locationElement.options[locationElement.selectedIndex].value;
+                    formActionElement.action = "/user/" + username + "/set_location/" + nameLocation;
+                    break;
+                case "show_tickets":
+                    formActionElement.action = "/user/" + username + "/show_tickets";
+                    break;
+                case "grant_ticket":
+                    let userReceive = grantTicketElement.options[grantTicketElement.selectedIndex].value;
+                    formActionElement.action = "/user/" + username + "/grant_ticket/" + userReceive;
+                    break;
+                case "open_football":
+                    formActionElement.action = "/user/" + username + "/open_football";
+                    break;
+                case "next_step":
+                    userReceive = grantTicketElement.options[grantTicketElement.selectedIndex].value;
+                    formActionElement.action = "cases/grant_tickets/next_step/" + username + "/" + userReceive;
+                    break;
+            }
+        }
+
+    </script>
+
+    <form th:action="@{/add_football_score/left}" method="get">
+        <button type="submit" class="btn btn-info">Add left part score</button>
+    </form>
+
+    <br/>
+
+    <form th:action="@{/add_football_score/right}" method="get">
+        <button type="submit" class="btn btn-info">Add right part score</button>
+    </form>
+
+    <br/>
+
+    <form th:action="@{/reset_football_score}" method="get">
+        <button type="submit" class="btn btn-info">Reset score</button>
+    </form>
+
+    <br/>
+
+    <form th:action="@{/user/ricky/next_page}" method="get">
+        <button type="submit" class="btn btn-success">Next Step Ricky</button>
+    </form>
+
+    <br/>
+
+    <form th:action="@{/user/ricky/set_page/0}" method="get">
+        <button type="submit" class="btn btn-success">Ricky first page</button>
+    </form>
+
+    <br/>
+
+    <form th:action="@{/cases/grant_tickets/next_step/ricky/sam}" method="get">
+        <button type="submit" class="btn btn-success">Next case (grant ticket)</button>
+    </form>
+
+    <br/>
+
+    <form th:action="@{/user/ricky/set_location/london}" method="get">
+        <button type="submit" class="btn btn-default">Set location London</button>
+    </form>
+
+    <br/>
+
+    <form th:action="@{/user/ricky/set_location/dubai}" method="get">
+        <button type="submit" class="btn btn-default">Set location Dubai</button>
+    </form>
+
+    <br/>
+
+
+
+    <form th:action="@{/user/ricky/show_tickets}" method="get">
+        <button type="submit" class="btn btn-danger">Show tickets</button>
+    </form>
+
+    <br/>
+
+    <form th:action="@{/user/ricky/hide_tickets}" method="get">
+        <button type="submit" class="btn btn-danger">Hide tickets</button>
+    </form>
+
+    <br/>
+
+    <form th:action="@{/user/ricky/grant_ticket/sam}" method="get">
+        <button type="submit" class="btn btn-danger">Grant Ricky ticket to Sam</button>
+    </form>
+
+    <br/>
+
+    <form th:action="@{/user/ricky/open_football}" method="get">
+        <button type="submit" class="btn btn-info">Open video football</button>
+    </form>
+</div>
+
+
+</body>
+</html>
