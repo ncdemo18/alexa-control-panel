@@ -19,10 +19,14 @@ spring:
 # ===============================
 
 spring:
+  data:
+    jpa:
+      repositories:
+        enabled: true
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     generate-ddl: true
     properties:
       hibernate:
