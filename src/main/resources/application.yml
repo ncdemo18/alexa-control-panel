@@ -23,6 +23,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+    generate-ddl: true
     properties:
       hibernate:
         dialect : org.hibernate.dialect.PostgreSQL82Dialect
@@ -33,6 +34,7 @@ spring:
 
         temp:
           use_jdbc_metadata_defaults: false
+
 
 
 ---
