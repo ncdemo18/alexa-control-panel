@@ -5,9 +5,10 @@
 spring:
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/Alexa
-    username: postgres
-    password: 123
+    url: ${SPRING_DATASOURCE_URL}
+    #jdbc:postgresql://localhost:5432/Alexa
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
 
 ---
 
