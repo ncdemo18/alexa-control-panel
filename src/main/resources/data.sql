@@ -1,4 +1,3 @@
-
 INSERT INTO "public"."locations" ("id", "location_name") VALUES (1, 'london');
 INSERT INTO "public"."locations" ("id", "location_name") VALUES (2, 'dubai');
 INSERT INTO "public"."locations" ("id", "location_name") VALUES (3, 'rome');
