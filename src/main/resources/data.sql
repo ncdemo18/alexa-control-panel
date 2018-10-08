@@ -1,4 +1,4 @@
-INSERT INTO "public"."locations" ("id", "location_name") VALUES (1, 'london');
+/*INSERT INTO "public"."locations" ("id", "location_name") VALUES (1, 'london');
 INSERT INTO "public"."locations" ("id", "location_name") VALUES (2, 'dubai');
 INSERT INTO "public"."locations" ("id", "location_name") VALUES (3, 'rome');
 
@@ -10,13 +10,13 @@ INSERT INTO "public"."elements" ("id", "block_name", "param") VALUES (5, 'scroll
 INSERT INTO "public"."elements" ("id", "block_name", "param") VALUES (6, 'scroll_image', '5 Match page');
 INSERT INTO "public"."elements" ("id", "block_name", "param") VALUES (7, 'loyalty_block', '365');
 INSERT INTO "public"."elements" ("id", "block_name", "param") VALUES (8, 'scroll_image_video', '10 Media Center - Pass recieved');
-INSERT INTO "public"."elements" ("id", "block_name", "param") VALUES (9, 'score_block', '0 : 0');
-
+INSERT INTO "public"."elements" ("id", "block_name", "param") VALUES (9, 'score_block', '0 : 0');*/
+/*
 INSERT INTO "public"."pages" ("id") VALUES (1);
 INSERT INTO "public"."pages" ("id") VALUES (2);
 INSERT INTO "public"."pages" ("id") VALUES (3);
 INSERT INTO "public"."pages" ("id") VALUES (4);
-INSERT INTO "public"."pages" ("id") VALUES (5);
+INSERT INTO "public"."pages" ("id") VALUES (5);*/
 
 INSERT INTO "public"."page_element" ("id_page", "id_page_element", "id") VALUES (1, 2, 1);
 INSERT INTO "public"."page_element" ("id_page", "id_page_element", "id") VALUES (1, 3, 2);
