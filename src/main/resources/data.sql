@@ -1,4 +1,4 @@
-/*INSERT INTO "public"."locations" ("id", "location_name") VALUES (1, 'london');
+INSERT INTO "public"."locations" ("id", "location_name") VALUES (1, 'london');
 INSERT INTO "public"."locations" ("id", "location_name") VALUES (2, 'dubai');
 INSERT INTO "public"."locations" ("id", "location_name") VALUES (3, 'rome');
 
@@ -40,4 +40,3 @@ INSERT INTO "public"."user_page" ("id_user", "id_page", "id") VALUES (1, 2, 2);
 INSERT INTO "public"."user_page" ("id_user", "id_page", "id") VALUES (1, 3, 3);
 INSERT INTO "public"."user_page" ("id_user", "id_page", "id") VALUES (1, 4, 4);
 INSERT INTO "public"."user_page" ("id_user", "id_page", "id") VALUES (2, 5, 5);
-*/

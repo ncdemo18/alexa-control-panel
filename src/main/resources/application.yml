@@ -28,7 +28,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     generate-ddl: false
     properties:
       hibernate:
