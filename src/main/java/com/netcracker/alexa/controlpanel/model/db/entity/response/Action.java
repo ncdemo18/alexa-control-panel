@@ -2,14 +2,14 @@ package com.netcracker.alexa.controlpanel.model.db.entity.response;
 
 import javax.persistence.*;
 
-/*@Entity
-@Table(name = "actions")*/
+@Entity
+@Table(name = "actions")
 public class Action {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "type", unique = true)
+    @Column(name = "type")
     private String typeAction;
 
     @Column(name = "user_login")
@@ -26,13 +26,12 @@ public class Action {
     @Override
     public String toString() {
         String result = typeAction;
-        if(param != null && !param.isEmpty()) {
-            result += param;
+        if(isRequiredAction()) {
+            result = "user/" + userLogin + "/" + typeAction;
+            if(param != null && !param.isEmpty()) {
+                result += param;
+            }
         }
         return result;
-    }
-
-    public String getUserLogin() {
-        return userLogin;
     }
 }

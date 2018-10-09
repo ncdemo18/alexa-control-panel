@@ -1,3 +1,8 @@
+INSERT INTO "public"."actions" ("id", "type", "user_login") VALUES (1, 'next_page', 'ricky');
+INSERT INTO "public"."answers" ("id", "phrase_request", "phrase_answer") VALUES (1, 'next page', 'You can see result!');
+INSERT INTO "public"."list_actions" ("id", "id_action", "id_answer") VALUES (1, 1, 1);
+
+
 INSERT INTO "public"."locations" ("id", "location_name") VALUES (1, 'london');
 INSERT INTO "public"."locations" ("id", "location_name") VALUES (2, 'dubai');
 INSERT INTO "public"."locations" ("id", "location_name") VALUES (3, 'rome');
