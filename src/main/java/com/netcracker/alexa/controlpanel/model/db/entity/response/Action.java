@@ -12,8 +12,8 @@ public class Action {
     @Column(name = "type")
     private String typeAction;
 
-    @Column(name = "user_login")
-    private String userLogin;
+    @Column(name = "description")
+    private String description;
 
     //only one param?
     @Column(name = "param")
@@ -23,8 +23,7 @@ public class Action {
         return !typeAction.equals("nothing");
     }
 
-    @Override
-    public String toString() {
+    public String getActionURL(String userLogin) {
         String result = typeAction;
         if(isRequiredAction()) {
             result = "user/" + userLogin + "/" + typeAction;

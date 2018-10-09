@@ -1,5 +1,5 @@
-INSERT INTO "public"."actions" ("id", "type", "user_login") VALUES (1, 'next_page', 'ricky');
-INSERT INTO "public"."answers" ("id", "phrase_request", "phrase_answer") VALUES (1, 'next page', 'You can see result!');
+INSERT INTO "public"."actions" ("id", "type", "description") VALUES (1, 'next_page', 'Go to next user page');
+INSERT INTO "public"."answers" ("id", "phrase_request", "phrase_answer", "user_login") VALUES (1, 'next page', 'You can see result!', 'ricky');
 INSERT INTO "public"."list_actions" ("id", "id_action", "id_answer") VALUES (1, 1, 1);
 
 

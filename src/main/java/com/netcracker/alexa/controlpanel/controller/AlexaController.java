@@ -34,7 +34,7 @@ public class AlexaController {
             for (Action action : alexaAnswer.getActions()){
                 if(action.isRequiredAction()){
                     RestTemplate restTemplate = new RestTemplate();
-                    restTemplate.getForEntity(applicationURL + action.toString(), String.class);
+                    restTemplate.getForEntity(applicationURL + action.getActionURL(alexaAnswer.getUserLogin()), String.class);
                 }
             }
             phraseAnswer = alexaAnswer.getPhraseAnswer();
