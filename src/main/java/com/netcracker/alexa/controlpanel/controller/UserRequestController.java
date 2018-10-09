@@ -1,6 +1,6 @@
 package com.netcracker.alexa.controlpanel.controller;
 
-import com.netcracker.alexa.controlpanel.model.db.entity.User;
+import com.netcracker.alexa.controlpanel.model.db.entity.userpage.User;
 import com.netcracker.alexa.controlpanel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;

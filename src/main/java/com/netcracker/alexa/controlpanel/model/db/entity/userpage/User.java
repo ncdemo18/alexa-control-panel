@@ -1,4 +1,4 @@
-package com.netcracker.alexa.controlpanel.model.db.entity;
+package com.netcracker.alexa.controlpanel.model.db.entity.userpage;
 
 import javax.persistence.*;
 import java.util.ArrayList;
