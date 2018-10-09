@@ -33,6 +33,8 @@ public class AlexaAnswer {
         this.userLogin = userLogin;
     }
 
+    public AlexaAnswer() {}
+
     public List<Action> getActions() {
         return actions;
     }
