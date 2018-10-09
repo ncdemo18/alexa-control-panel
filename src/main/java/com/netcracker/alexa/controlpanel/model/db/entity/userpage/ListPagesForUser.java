@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "user_page")
-public class UserPage {
+public class ListPagesForUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

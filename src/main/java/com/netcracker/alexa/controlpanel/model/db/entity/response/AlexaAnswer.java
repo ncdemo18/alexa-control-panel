@@ -27,13 +27,17 @@ public class AlexaAnswer {
     )
     private List<Action> actions = new ArrayList<>();
 
-    public AlexaAnswer(String phraseRequest, String phraseAnswer, String userLogin) {
+    public AlexaAnswer(String userLogin, String phraseRequest, String phraseAnswer) {
+        this.userLogin = userLogin;
         this.phraseRequest = phraseRequest;
         this.phraseAnswer = phraseAnswer;
-        this.userLogin = userLogin;
     }
 
     public AlexaAnswer() {}
+
+    public void addAction(Action action) {
+        actions.add(action);
+    }
 
     public List<Action> getActions() {
         return actions;

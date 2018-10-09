@@ -21,21 +21,19 @@ public class AlexaController {
 
 
     @GetMapping("/hello")
-    String get(){
+    String get() {
         return "";
     }
 
     @PostMapping("/handle_user_request")
     @ResponseBody
-    String handleRequest(@RequestParam("userMessage") String message){
+    String handleRequest(@RequestParam("userMessage") String message) {
         String phraseAnswer = "Sorry, I don't understand you";
         AlexaAnswer alexaAnswer = alexaAnswerRepository.findFirstByPhraseRequest(message);
-        if(alexaAnswer != null) {
-            for (Action action : alexaAnswer.getActions()){
-                if(action.isRequiredAction()){
-                    RestTemplate restTemplate = new RestTemplate();
-                    restTemplate.getForEntity(applicationURL + action.getActionURL(alexaAnswer.getUserLogin()), String.class);
-                }
+        if (alexaAnswer != null) {
+            for (Action action : alexaAnswer.getActions()) {
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getForEntity(applicationURL + action.getActionURL(alexaAnswer.getUserLogin()), String.class);
             }
             phraseAnswer = alexaAnswer.getPhraseAnswer();
         }

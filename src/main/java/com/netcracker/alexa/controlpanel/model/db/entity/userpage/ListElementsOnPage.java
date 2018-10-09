@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "page_element")
-public class PageElement {
+public class ListElementsOnPage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
