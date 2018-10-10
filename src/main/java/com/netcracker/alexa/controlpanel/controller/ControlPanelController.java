@@ -52,8 +52,8 @@ public class ControlPanelController {
     String editUserData(@RequestParam("login") String login,
                         @RequestParam("userPhrase") String userPhrase,
                         @RequestParam("alexaAnswer") String alexaAnswer,
-                        @RequestParam("alexaAnswer") String typeAction,
-                        @RequestParam("alexaAnswer") String paramAction) {
+                        @RequestParam("typeAction") String typeAction,
+                        @RequestParam("paramAction") String paramAction) {
         System.out.println("login: " + login);
         System.out.println("userPhrase: " + userPhrase);
         System.out.println("alexaAnswer: " + alexaAnswer);
