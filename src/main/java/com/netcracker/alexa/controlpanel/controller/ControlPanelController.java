@@ -60,11 +60,12 @@ public class ControlPanelController {
         System.out.println("typeAction: " + typeActionId);
         if(!alexaAnswerRepository.existsAlexaAnswerByPhraseRequest(userPhrase)) {
             AlexaAnswer answer = new AlexaAnswer(login, userPhrase, alexaAnswer);
-            Action action = actionRepository.findById(Long.valueOf(typeActionId)).orElse(null);
-            if(action != null) {
-               // answer.addAction(action);
+            if(typeActionId != null && !typeActionId.isEmpty()) {
+                Action action = actionRepository.findById(Long.valueOf(typeActionId)).orElse(null);
+                if(action != null) {
+                    answer.addAction(action);
+                }
             }
-            //Param param = new Param(typeAction, paramAction);
             alexaAnswerRepository.save(answer);
         }
         return "ricky";

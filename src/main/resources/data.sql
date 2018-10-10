@@ -1,7 +1,7 @@
 INSERT INTO "public"."actions" ("id", "description") VALUES (1, 'Go to next user page');
 INSERT INTO "public"."params" ("id", "name") VALUES (1, 'next_page');
 INSERT INTO "public"."action_param" ("id", "id_action", "id_param") VALUES (1, 1, 1);
-INSERT INTO "public"."answers" ("id", "phrase_request", "phrase_answer", "user_login") VALUES (1, 'next page', 'You can see result!', 'ricky');
+/*INSERT INTO "public"."answers" ("id", "phrase_request", "phrase_answer", "user_login") VALUES (1, 'next page', 'You can see result!', 'ricky');*/
 INSERT INTO "public"."list_actions" ("id", "id_action", "id_answer") VALUES (1, 1, 1);
 
 INSERT INTO "public"."locations" ("id", "location_name") VALUES (1, 'london');
