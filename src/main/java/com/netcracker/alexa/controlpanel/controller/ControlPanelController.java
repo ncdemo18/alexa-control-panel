@@ -54,9 +54,12 @@ public class ControlPanelController {
                         @RequestParam("alexaAnswer") String alexaAnswer,
                         @RequestParam("alexaAnswer") String typeAction,
                         @RequestParam("alexaAnswer") String paramAction) {
+        System.out.println("login: " + login);
+        System.out.println("userPhrase: " + userPhrase);
+        System.out.println("alexaAnswer: " + alexaAnswer);
+        System.out.println("typeAction: " + typeAction);
         if(!alexaAnswerRepository.existsAlexaAnswerByPhraseRequest(userPhrase)) {
             AlexaAnswer answer = new AlexaAnswer(login, userPhrase, alexaAnswer);
-            System.out.println(typeAction);
             Action action = actionRepository.findFirstByDescription(typeAction);
             if(action != null) {
                 answer.addAction(action);
