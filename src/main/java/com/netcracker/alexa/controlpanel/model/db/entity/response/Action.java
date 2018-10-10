@@ -48,4 +48,12 @@ public class Action {
         }
         return url.toString();
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public long getId() {
+        return id;
+    }
 }
