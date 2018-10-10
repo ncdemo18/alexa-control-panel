@@ -52,7 +52,7 @@ public class ControlPanelController {
     String editUserData(@RequestParam("login") String login,
                         @RequestParam("userPhrase") String userPhrase,
                         @RequestParam("alexaAnswer") String alexaAnswer,
-                        @RequestParam("typeAction") long typeActionId,
+                        @RequestParam("typeAction") String typeActionId,
                         @RequestParam("paramAction") String paramAction) {
         System.out.println("login: " + login);
         System.out.println("userPhrase: " + userPhrase);
@@ -60,7 +60,7 @@ public class ControlPanelController {
         System.out.println("typeAction: " + typeActionId);
         if(!alexaAnswerRepository.existsAlexaAnswerByPhraseRequest(userPhrase)) {
             AlexaAnswer answer = new AlexaAnswer(login, userPhrase, alexaAnswer);
-            Action action = actionRepository.findById(typeActionId).orElse(null);
+            Action action = actionRepository.findById(Long.valueOf(typeActionId)).orElse(null);
             if(action != null) {
                 answer.addAction(action);
             }
