@@ -20,7 +20,7 @@ public class AlexaAnswer {
     @Column(name = "user_login")
     private String userLogin;
 
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "list_actions",
             joinColumns = @JoinColumn(name = "id_answer"),
             inverseJoinColumns = @JoinColumn(name = "id_action")
