@@ -62,7 +62,7 @@ public class ControlPanelController {
             AlexaAnswer answer = new AlexaAnswer(login, userPhrase, alexaAnswer);
             Action action = actionRepository.findById(Long.valueOf(typeActionId)).orElse(null);
             if(action != null) {
-                answer.addAction(action);
+               // answer.addAction(action);
             }
             //Param param = new Param(typeAction, paramAction);
             alexaAnswerRepository.save(answer);
