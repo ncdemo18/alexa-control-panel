@@ -31,6 +31,11 @@ public class ControlPanelController {
         return "index";
     }
 
+    @GetMapping("/test")
+    String test(){
+        return "test";
+    }
+
     @GetMapping("/authorization/{login}")
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)

@@ -20,9 +20,9 @@ INSERT INTO "public"."list_actions" ("id", "id_action", "id_answer") VALUES (1, 
 
 INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (1, 'Go to next user page', 'next_page');
 INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (2, 'Jump to user page with number', 'set_page');
-INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (3, 'Set user location', 'show_tickets');
-INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (4, 'Show ticket panel on user page', 'hide_tickets');
-INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (5, 'Hide ticket panel on user page', 'next_page');
+INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (3, 'Set user location', 'set_location');
+INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (4, 'Show ticket panel on user page', 'show_tickets');
+INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (5, 'Hide ticket panel on user page', 'hide_tickets');
 INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (6, 'Grant ticket to user', 'grant_ticket');
 INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (7, 'Open football for user', 'open_football');
 
