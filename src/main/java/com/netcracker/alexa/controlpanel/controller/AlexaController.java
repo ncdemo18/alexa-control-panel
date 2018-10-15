@@ -1,10 +1,10 @@
 package com.netcracker.alexa.controlpanel.controller;
 
-import com.netcracker.alexa.controlpanel.model.db.entity.response.Action;
-import com.netcracker.alexa.controlpanel.model.db.entity.response.AlexaAnswer;
+import com.netcracker.alexa.controlpanel.model.db.entity.response.handle.ActionURL;
+import com.netcracker.alexa.controlpanel.model.db.entity.response.handle.AlexaAnswer;
 import com.netcracker.alexa.controlpanel.repository.AlexaAnswerRepository;
+import com.netcracker.alexa.controlpanel.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,13 +12,10 @@ import org.springframework.web.client.RestTemplate;
 public class AlexaController {
 
     @Autowired
-    private SimpMessageSendingOperations sendingOperations;
-
-    @Autowired
     private AlexaAnswerRepository alexaAnswerRepository;
 
-    private String applicationURL = "https://alexa-control-panel.herokuapp.com/";
-
+    @Autowired
+    private AddressService addressService;
 
     @GetMapping("/hello")
     String get() {
@@ -31,9 +28,9 @@ public class AlexaController {
         String phraseAnswer = "Sorry, I don't understand you";
         AlexaAnswer alexaAnswer = alexaAnswerRepository.findFirstByPhraseRequest(message);
         if (alexaAnswer != null) {
-            for (Action action : alexaAnswer.getActions()) {
+            for (ActionURL actionURL : alexaAnswer.getActions()) {
                 RestTemplate restTemplate = new RestTemplate();
-                restTemplate.getForEntity(applicationURL + action.getActionURL(alexaAnswer.getUserLogin()), String.class);
+                restTemplate.getForEntity(addressService.getFullURL(alexaAnswer.getUserLogin(), actionURL.getUrl()), String.class);
             }
             phraseAnswer = alexaAnswer.getPhraseAnswer();
         }

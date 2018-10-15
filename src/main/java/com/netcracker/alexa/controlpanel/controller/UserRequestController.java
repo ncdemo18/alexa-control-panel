@@ -11,10 +11,11 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class UserRequestController {
 
-    /*@Autowired
-    private SaveService saveService;*/
+/*@Autowired
+    private SaveService saveService;
 
-    /*@MessageMapping("/start_config/{username}")
+
+@MessageMapping("/start_config/{username}")
     @SendTo("/topic/user/{username}")
     public ConfigUserPages sendMessage(@DestinationVariable("username") String username) {
         System.out.println(username);
@@ -22,13 +23,14 @@ public class UserRequestController {
     }*/
 
 
+
     @Autowired
     private UserRepository userRepository;
 
-    @MessageMapping("/start_config/{username}")
-    @SendTo("/topic/user/{username}")
-    public User sendMessage(@DestinationVariable("username") String username) {
-        System.out.println(username);
-        return userRepository.findByUsername(username);
+    @MessageMapping("/start_config/{login}")
+    @SendTo("/topic/user/{login}")
+    public User sendUserConfig(@DestinationVariable("login") String login) {
+        System.out.println(login);
+        return userRepository.findByLogin(login);
     }
 }

@@ -11,8 +11,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
     @Column(name = "login", unique = true)
-    private String username;
+    private String login;
 
     @Column(name = "count_tickets")
     private int countTickets;
@@ -31,8 +37,8 @@ public class User {
     )
     private List<Page> pages = new ArrayList<>();
 
-    public String getUsername() {
-        return username;
+    public String getLogin() {
+        return login;
     }
 
     public int getCountTickets() {
@@ -53,5 +59,17 @@ public class User {
 
     public List<Page> getPages() {
         return pages;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 }

@@ -1,9 +1,9 @@
 package com.netcracker.alexa.controlpanel.repository;
 
-import com.netcracker.alexa.controlpanel.model.db.entity.userpage.User;
-import org.springframework.data.repository.CrudRepository;
+        import com.netcracker.alexa.controlpanel.model.db.entity.userpage.User;
+        import org.springframework.data.repository.CrudRepository;
 
 public interface UserRepository extends CrudRepository<User, Long> {
-    User findByUsername(String username);
-    boolean existsUserByUsername(String username);
+    User findByLogin(String login);
+    boolean existsUserByLogin(String login);
 }

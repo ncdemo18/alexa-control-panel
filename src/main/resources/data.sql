@@ -1,8 +1,38 @@
-INSERT INTO "public"."actions" ("id", "description") VALUES (1, 'Go to next user page');
-INSERT INTO "public"."params" ("id", "name") VALUES (1, 'next_page');
-INSERT INTO "public"."action_param" ("id", "id_action", "id_param") VALUES (1, 1, 1);
-/*INSERT INTO "public"."answers" ("id", "phrase_request", "phrase_answer", "user_login") VALUES (1, 'next page', 'You can see result!', 'ricky');
+/*INSERT INTO "public"."type_actions" ("id", "description") VALUES (1, 'Go to next user page');
+INSERT INTO "public"."type_actions" ("id", "description") VALUES (2, 'Jump to user page with number');
+INSERT INTO "public"."type_actions" ("id", "description") VALUES (3, 'Set user location');
+INSERT INTO "public"."type_actions" ("id", "description") VALUES (4, 'Show ticket panel on user page');
+INSERT INTO "public"."type_actions" ("id", "description") VALUES (5, 'Hide ticket panel on user page');
+INSERT INTO "public"."type_actions" ("id", "description") VALUES (6, 'Grant ticket to user');
+INSERT INTO "public"."type_actions" ("id", "description") VALUES (7, 'Open football for user');
+
+INSERT INTO "public"."type_params" ("id", "name", "required_value") VALUES (1, 'next_page', false);
+INSERT INTO "public"."type_params" ("id", "name", "required_value") VALUES (2, 'set_page', true);
+INSERT INTO "public"."type_params" ("id", "name", "required_value") VALUES (3, 'show_tickets', false);
+INSERT INTO "public"."type_params" ("id", "name", "required_value") VALUES (4, 'hide_tickets', false);
+INSERT INTO "public"."type_params" ("id", "name", "required_value") VALUES (5, 'grant_ticket', true);
+INSERT INTO "public"."type_params" ("id", "name", "required_value") VALUES (6, 'open_football', false);
+
+
+INSERT INTO "public"."action_type_param" ("id", "id_action", "id_param", "order") VALUES (1, 1, 1, 1);
+INSERT INTO "public"."answers" ("id", "phrase_request", "phrase_answer", "user_login") VALUES (1, 'next page', 'You can see result!', 'ricky');
 INSERT INTO "public"."list_actions" ("id", "id_action", "id_answer") VALUES (1, 1, 1);*/
+
+INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (1, 'Go to next user page', 'next_page');
+INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (2, 'Jump to user page with number', 'set_page');
+INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (3, 'Set user location', 'show_tickets');
+INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (4, 'Show ticket panel on user page', 'hide_tickets');
+INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (5, 'Hide ticket panel on user page', 'next_page');
+INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (6, 'Grant ticket to user', 'grant_ticket');
+INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (7, 'Open football for user', 'open_football');
+
+INSERT INTO "public"."url_params" ("id", "name") VALUES (1, 'number_page');
+INSERT INTO "public"."url_params" ("id", "name") VALUES (2, 'name_location');
+INSERT INTO "public"."url_params" ("id", "name") VALUES (3, 'receive_user');
+
+INSERT INTO "public"."action_param" ("id", "id_action", "id_param") VALUES (1, 2, 1);
+INSERT INTO "public"."action_param" ("id", "id_action", "id_param") VALUES (2, 3, 2);
+INSERT INTO "public"."action_param" ("id", "id_action", "id_param") VALUES (3, 6, 3);
 
 INSERT INTO "public"."locations" ("id", "location_name") VALUES (1, 'london');
 INSERT INTO "public"."locations" ("id", "location_name") VALUES (2, 'dubai');
@@ -37,8 +67,8 @@ INSERT INTO "public"."page_element" ("id_page", "id_page_element", "id") VALUES 
 INSERT INTO "public"."page_element" ("id_page", "id_page_element", "id") VALUES (5, 8, 11);
 
 
-INSERT INTO "public"."users" ("id", "count_tickets", "loyalty_points", "login", "location_id") VALUES (1, 6, 365, 'ricky', 1);
-INSERT INTO "public"."users" ("id", "count_tickets", "loyalty_points", "login", "location_id") VALUES (2, 1, 365, 'sam', 1);
+INSERT INTO "public"."users" ("id", "first_name", "last_name", "count_tickets", "loyalty_points", "login", "location_id") VALUES (1, 'Rick', 'Boyle', 6, 365, 'ricky', 1);
+INSERT INTO "public"."users" ("id", "first_name", "last_name", "count_tickets", "loyalty_points", "login", "location_id") VALUES (2, 'Sam', 'Boyle', 1, 365, 'sam', 1);
 
 
 INSERT INTO "public"."user_page" ("id_user", "id_page", "id") VALUES (1, 1, 1);
