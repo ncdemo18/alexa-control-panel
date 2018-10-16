@@ -7,17 +7,19 @@
     <link rel="stylesheet" type="text/css"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
-<body>
+<body style="background:url('../static/img/background.jpg');
+background-repeat: no-repeat;
+background-size: 100%">
 <div style="text-align: center">
     <br/>
 
     <form id="form_action" method="get">
-        <label for="user_select">Select user:</label>
+        <label for="user_select" style="color:white">Select user:</label>
         <select id="user_select" class="form-group">
             <option value="ricky">Ricky</option>
             <option value="sam">Sam</option>
         </select>
-        <label for="action_select">Select actionURL:</label>
+        <label for="action_select" style="color:white">Select actionURL:</label>
         <select id="action_select" class="form-group" onchange="selectAction()">
             <option value="next_page">Next Page</option>
             <option value="set_page">Set Page</option>
