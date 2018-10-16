@@ -49,39 +49,8 @@
         </select>
         <br>
 
-
-       <!-- <label for="login">Choose user login:</label>
-        <select id="login" name="login">
-            <option th:each="user : ${users}" th:value="${user.login}" th:utext="|${user.firstName} ${user.lastName}|"/>
-        </select>
-        <br>
-
-        <input id="userPhrase" type="text" class="form-control" placeholder="User phrase"
-               th:name="phraseRequest" th:field="*{phraseRequest}"/>
-        <br>
-
-        <input id="alexaAnswer" type="text" class="form-control" placeholder="Alexa answer"
-               th:name="alexaAnswer"/>
-        <br>-->
-
         <div class="list-group" id="actionsBlock">
         </div>
-
-        <!--<div id="actionBlock" style="display: none">
-
-            <label for="templateAction">Choose name action:</label>
-            <select id="templateAction" name="templateAction" onchange="showAction()">
-                <option value=""> &#45;&#45;</option>
-                <option th:each="action, actionStat : ${actions}"
-                        th:value="${actionStat.index}" th:utext="${action.description}"/>
-            </select>
-
-            <div id="paramBlock"></div>
-
-            <input id="urlValue" name="urlValue" type="hidden"/>
-            <input id="idAction" name="idAction" type="hidden"/>
-
-        </div>-->
 
         <button type="submit" style="width: 80px; margin-left: 1%" class="btn btn-info" onclick="generateURL()">Ok</button>
 

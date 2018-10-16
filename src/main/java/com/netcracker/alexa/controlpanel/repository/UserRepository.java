@@ -5,5 +5,6 @@ package com.netcracker.alexa.controlpanel.repository;
 
 public interface UserRepository extends CrudRepository<User, Long> {
     User findByLogin(String login);
+
     boolean existsUserByLogin(String login);
 }

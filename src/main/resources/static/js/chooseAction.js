@@ -45,9 +45,3 @@ function getUrl() {
     }
     return url;
 }
-
-/*
-function setUrl() {
-    inputURL.value = getUrl();
-    inputAction.value = action.id;
-}*/

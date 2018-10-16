@@ -6,6 +6,8 @@ import com.netcracker.alexa.controlpanel.model.db.entity.userpage.User;
 import com.netcracker.alexa.controlpanel.repository.AlexaAnswerRepository;
 import com.netcracker.alexa.controlpanel.repository.TemplateActionRepository;
 import com.netcracker.alexa.controlpanel.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,8 @@ public class ControlPanelController {
     @Autowired
     private AlexaAnswerRepository alexaAnswerRepository;
 
+    private final Logger logger = LoggerFactory.getLogger(ControlPanelController.class);
+
     @GetMapping("/")
     String startPage(){
         return "index";
@@ -40,7 +44,7 @@ public class ControlPanelController {
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
     String authorization(@PathVariable("login") String login){
-        System.out.println("authorization: " + login);
+        logger.debug("authorization: {}", login);
         if(userRepository.existsUserByLogin(login)) {
             return "yes";
         }
@@ -58,21 +62,9 @@ public class ControlPanelController {
     }
 
     @PostMapping("/add_answer")
-    String addAnswer(/*@RequestParam("login") String login,
-                     @RequestParam("userPhrase") String userPhrase,
-                     @RequestParam("alexaAnswer") String alexaAnswer,
-                     @RequestParam("urlValue") String urlValue,
-                     @RequestParam("idAction") String idAction*/
-            @ModelAttribute("answer") AlexaAnswer answer) {
-       // userPhrase = correctUserPhrase(userPhrase);
+    String addAnswer(@ModelAttribute("answer") AlexaAnswer answer) {
         answer.correctUserPhrase();
         if(!alexaAnswerRepository.existsAlexaAnswerByPhraseRequest(answer.getPhraseRequest())) {
-            /*AlexaAnswer answer = new AlexaAnswer(login, userPhrase, alexaAnswer);
-            if(urlValue != null && !urlValue.equals("")) {
-                TemplateAction action = templateActionRepository.findById(Long.valueOf(idAction)).orElse(null);
-                ActionURL url = new ActionURL(urlValue, action);
-                answer.addURL(url);
-            }*/
             alexaAnswerRepository.save(answer);
         }
         return "redirect:/show_phrase";
@@ -80,10 +72,7 @@ public class ControlPanelController {
 
     @GetMapping("/show_phrase")
     String showListPhrase(Model model) {
-
-        //вот тут вытащится полбазы! Нужно сделать lazy
         List<AlexaAnswer> answers = (List<AlexaAnswer>) alexaAnswerRepository.findAll();
-
         model.addAttribute("answers", answers);
         return "list_phrase";
     }
@@ -99,7 +88,7 @@ public class ControlPanelController {
 
     @PostMapping("/edit_user_phrase")
     String editPhrase(@ModelAttribute("answer") AlexaAnswer answer) {
-        System.out.println(answer.getPhraseRequest());
+        answer.correctUserPhrase();
         alexaAnswerRepository.save(answer);
         return "redirect:/show_phrase";
     }
@@ -115,8 +104,4 @@ public class ControlPanelController {
         alexaAnswerRepository.deleteAll();
         return "redirect:/show_phrase";
     }
-
-    /*private String correctUserPhrase(String phrase){
-        return phrase.toLowerCase().replaceAll("[^\\w\\s]"," ").replaceAll("\\s+", " ").trim();
-    }*/
 }

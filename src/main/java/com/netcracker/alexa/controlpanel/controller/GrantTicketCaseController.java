@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/cases")
-public class DemonstrationCaseController {
+public class GrantTicketCaseController {
 
     @Autowired
     private GrantTicketCaseService grantTicketCaseService;

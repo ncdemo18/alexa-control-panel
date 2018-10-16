@@ -2,6 +2,8 @@ package com.netcracker.alexa.controlpanel.controller;
 
 import com.netcracker.alexa.controlpanel.model.Command;
 import com.netcracker.alexa.controlpanel.model.CommandType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/user/{username}")
 public class UserPageController {
 
+    private final Logger logger = LoggerFactory.getLogger(UserPageController.class);
+
     private final SimpMessageSendingOperations sendingOperations;
 
     @Autowired
@@ -23,7 +27,7 @@ public class UserPageController {
 
     @GetMapping("/next_page")
     String nextPage(@PathVariable("username") String username) {
-        System.out.println("next page!!!");
+        logger.debug("next page!!!");
         sendingOperations.convertAndSend("/topic/user/" + username, new Command(CommandType.NEXT_PAGE));
         return "redirect:/";
     }
@@ -40,8 +44,6 @@ public class UserPageController {
         return "redirect:/";
     }
 
-//step 3
-
     @GetMapping("/show_tickets")
     String showTicketPanel(@PathVariable("username") String username){
         sendingOperations.convertAndSend("/topic/user/" + username, new Command(CommandType.SHOW_TICKET_PANEL));
@@ -54,16 +56,12 @@ public class UserPageController {
         return "redirect:/";
     }
 
-//step 4
-
     @GetMapping("/grant_ticket")
     String grantTicket(@PathVariable("username") String grantUser, @RequestParam("receive_user") String receiveUser){
         sendingOperations.convertAndSend("/topic/user/" + grantUser, new Command(CommandType.GRANT_TICKET));
         sendingOperations.convertAndSend("/topic/user/" + receiveUser, new Command(CommandType.TAKE_TICKET));
         return "redirect:/";
     }
-
-//step 5
 
     @GetMapping("/open_football")
     String openFootball(@PathVariable("username") String username){

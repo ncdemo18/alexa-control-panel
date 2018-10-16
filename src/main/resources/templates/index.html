@@ -105,7 +105,7 @@
                     break;
                 case "set_page":
                     let number = numberPageElement.options[numberPageElement.selectedIndex].value;
-                    formActionElement.action = "/user/" + username + "/set_page?number_page=";
+                    formActionElement.action = "/user/" + username + "/set_page?number_page=" + number;
                     break;
                 case "set_location":
                     let nameLocation = locationElement.options[locationElement.selectedIndex].value;
@@ -126,8 +126,6 @@
                     formActionElement.action = "cases/grant_tickets/next_step/" + username + "/" + userReceive;
                     break;
             }
-            //window.location.assign(formActionElement.action);
-            //alert(formActionElement.action);
         }
 
     </script>

@@ -5,5 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface AlexaAnswerRepository extends CrudRepository<AlexaAnswer, Long> {
     AlexaAnswer findFirstByPhraseRequest(String phraseRequest);
+
     boolean existsAlexaAnswerByPhraseRequest(String phraseRequest);
 }

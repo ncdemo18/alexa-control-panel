@@ -14,7 +14,6 @@ public class TemplateAction {
     @Column(name = "description")
     private String description;
 
-    /*url without params*/
     @Column(name = "url")
     private String url;
 
