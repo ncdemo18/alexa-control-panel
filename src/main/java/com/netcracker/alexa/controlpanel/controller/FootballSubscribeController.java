@@ -33,4 +33,11 @@ public class FootballSubscribeController {
         sendingOperations.convertAndSend("/topic/football" , footballScore.toString());
         return "redirect:/";
     }
+
+    @GetMapping("/football_modal/{command_name}")
+    String showModalWindow(@PathVariable("command_name") String commandName) {
+        //footballScore.resetScore();
+        sendingOperations.convertAndSend("/topic/football" , commandName);
+        return "redirect:/";
+    }
 }

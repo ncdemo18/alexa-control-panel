@@ -58,21 +58,9 @@ public class ControlPanelController {
     }
 
     @PostMapping("/add_answer")
-    String addAnswer(/*@RequestParam("login") String login,
-                     @RequestParam("userPhrase") String userPhrase,
-                     @RequestParam("alexaAnswer") String alexaAnswer,
-                     @RequestParam("urlValue") String urlValue,
-                     @RequestParam("idAction") String idAction*/
-            @ModelAttribute("answer") AlexaAnswer answer) {
-       // userPhrase = correctUserPhrase(userPhrase);
+    String addAnswer(@ModelAttribute("answer") AlexaAnswer answer) {
         answer.correctUserPhrase();
         if(!alexaAnswerRepository.existsAlexaAnswerByPhraseRequest(answer.getPhraseRequest())) {
-            /*AlexaAnswer answer = new AlexaAnswer(login, userPhrase, alexaAnswer);
-            if(urlValue != null && !urlValue.equals("")) {
-                TemplateAction action = templateActionRepository.findById(Long.valueOf(idAction)).orElse(null);
-                ActionURL url = new ActionURL(urlValue, action);
-                answer.addURL(url);
-            }*/
             alexaAnswerRepository.save(answer);
         }
         return "redirect:/show_phrase";
@@ -115,8 +103,4 @@ public class ControlPanelController {
         alexaAnswerRepository.deleteAll();
         return "redirect:/show_phrase";
     }
-
-    /*private String correctUserPhrase(String phrase){
-        return phrase.toLowerCase().replaceAll("[^\\w\\s]"," ").replaceAll("\\s+", " ").trim();
-    }*/
 }

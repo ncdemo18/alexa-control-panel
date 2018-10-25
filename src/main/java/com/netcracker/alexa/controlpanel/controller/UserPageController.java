@@ -70,4 +70,16 @@ public class UserPageController {
         sendingOperations.convertAndSend("/topic/user/" + username, new Command(CommandType.OPEN_FOOTBALL));
         return "redirect:/";
     }
+
+    @GetMapping("/set_loyalty_point")
+    String setLoyaltyPoints(@PathVariable("username") String username, @RequestParam("count_points") String countPoints){
+        sendingOperations.convertAndSend("/topic/user/" + username, new Command(CommandType.SET_LOYALTY_POINTS, countPoints));
+        return "redirect:/";
+    }
+
+    @GetMapping("/open_cartoon")
+    String openCartoon(@PathVariable("username") String username){
+        sendingOperations.convertAndSend("/topic/user/" + username, new Command(CommandType.OPEN_CARTOON));
+        return "redirect:/";
+    }
 }

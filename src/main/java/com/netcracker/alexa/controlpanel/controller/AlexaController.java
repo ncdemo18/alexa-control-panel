@@ -17,11 +17,6 @@ public class AlexaController {
     @Autowired
     private AddressService addressService;
 
-    @GetMapping("/hello")
-    String get() {
-        return "";
-    }
-
     @PostMapping("/handle_user_request")
     @ResponseBody
     String handleRequest(@RequestParam("userMessage") String message) {

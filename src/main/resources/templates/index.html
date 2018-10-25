@@ -25,14 +25,15 @@ background-size: 100%">
             <option value="set_page">Set Page</option>
             <option value="set_location">Set Location</option>
             <option value="show_tickets">Show Ticket</option>
+            <option value="hide_tickets">Hide Ticket</option>
             <option value="grant_ticket">Grant Ticket</option>
             <option value="open_football">Open Football</option>
-            <option value="next_step">Next step in case: grant ticket</option>
+            <option value="open_cartoon">Open Cartoon</option>
         </select>
 
         <div id="number_page_block" style="display: none">
             <label for="number_page">Select page</label>
-            <select  id="number_page">
+            <select  id="number_page" name="number_page">
                 <option name="number_page" value="0">1</option>
                 <option name="number_page" value="1">2</option>
                 <option name="number_page" value="2">3</option>
@@ -43,7 +44,7 @@ background-size: 100%">
 
         <div id="location_block" style="display: none">
             <label for="location">Select location</label>
-            <select id="location">
+            <select id="location" name="name_location">
                 <option value="london">London</option>
                 <option value="dubai">Dubai</option>
             </select>
@@ -51,7 +52,7 @@ background-size: 100%">
 
         <div id="grant_ticket_block" style="display: none">
             <label for="grant_ticket">Select receive user</label>
-            <select id="grant_ticket">
+            <select id="grant_ticket" name="receive_user">
                 <option value="sam">Sam</option>
                 <option value="ricky">Ricky</option>
             </select>
@@ -107,7 +108,7 @@ background-size: 100%">
                     break;
                 case "set_page":
                     let number = numberPageElement.options[numberPageElement.selectedIndex].value;
-                    formActionElement.action = "/user/" + username + "/set_page?number_page=";
+                    formActionElement.action = "/user/" + username + "/set_page?number_page=" + number;
                     break;
                 case "set_location":
                     let nameLocation = locationElement.options[locationElement.selectedIndex].value;
@@ -116,6 +117,9 @@ background-size: 100%">
                 case "show_tickets":
                     formActionElement.action = "/user/" + username + "/show_tickets";
                     break;
+                case "hide_tickets":
+                    formActionElement.action = "/user/" + username + "/hide_tickets";
+                    break;
                 case "grant_ticket":
                     let userReceive = grantTicketElement.options[grantTicketElement.selectedIndex].value;
                     formActionElement.action = "/user/" + username + "/grant_ticket?receive_user=" + userReceive;
@@ -123,21 +127,19 @@ background-size: 100%">
                 case "open_football":
                     formActionElement.action = "/user/" + username + "/open_football";
                     break;
-                case "next_step":
-                    userReceive = grantTicketElement.options[grantTicketElement.selectedIndex].value;
-                    formActionElement.action = "cases/grant_tickets/next_step/" + username + "/" + userReceive;
+                case "open_cartoon":
+                    formActionElement.action = "/user/" + username + "/open_cartoon";
                     break;
             }
-            //window.location.assign(formActionElement.action);
-            //alert(formActionElement.action);
         }
 
     </script>
 
-    <a class="btn btn-info" th:href="@{'/show_phrase'}">Go to list phrase</a>
-    <a class="btn btn-info" th:href="@{'/add_answer'}">Go to add phrase page</a>
+    <a class="btn btn-success" th:href="@{'/show_phrase'}">Go to list phrase</a>
+    <a class="btn btn-success" th:href="@{'/add_answer'}">Go to add phrase page</a>
 
-    <br>
+    <br/>
+    <br/>
 
 
     <form th:action="@{'/add_football_score/left'}" method="get">
@@ -158,37 +160,44 @@ background-size: 100%">
 
     <br/>
 
-    <form th:action="@{/user/ricky/next_page}" method="get">
-        <button type="submit">Next Step Ricky</button>
+    <form th:action="@{/football_modal/arsenal}" method="get">
+        <button type="submit" class="btn btn-info">Modal arsenal</button>
     </form>
 
     <br/>
 
-    <form th:action="@{/user/ricky/set_page/0}" method="get">
+    <form th:action="@{/football_modal/manchester}" method="get">
+        <button type="submit" class="btn btn-info">Modal manchester</button>
+    </form>
+
+    <br/>
+
+    <form th:action="@{/user/ricky/next_page}" method="get">
+        <button type="submit" class="btn btn-success">Next Step Ricky</button>
+    </form>
+
+    <br/>
+
+    <form th:action="@{/user/ricky/set_page}" method="get">
+        <input type="hidden" name="number_page" value="0">
         <button type="submit" class="btn btn-success">Ricky first page</button>
     </form>
 
     <br/>
 
-    <form th:action="@{/cases/grant_tickets/next_step/ricky/sam}" method="get">
-        <button type="submit" class="btn btn-success">Next case (grant ticket)</button>
-    </form>
-
-    <br/>
-
-    <form th:action="@{/user/ricky/set_location/london}" method="get">
+    <form th:action="@{/user/ricky/set_location}" method="get">
+        <input type="hidden" name="name_location" value="london">
         <button type="submit" class="btn btn-default">Set location London</button>
     </form>
 
     <br/>
 
-    <form th:action="@{/user/ricky/set_location/dubai}" method="get">
+    <form th:action="@{/user/ricky/set_location}" method="get">
+        <input type="hidden" name="name_location" value="dubai">
         <button type="submit" class="btn btn-default">Set location Dubai</button>
     </form>
 
     <br/>
-
-
 
     <form th:action="@{/user/ricky/show_tickets}" method="get">
         <button type="submit" class="btn btn-danger">Show tickets</button>
@@ -202,17 +211,37 @@ background-size: 100%">
 
     <br/>
 
-    <form th:action="@{/user/ricky/grant_ticket/sam}" method="get">
+    <form th:action="@{/user/ricky/grant_ticket}" method="get">
+        <input type="hidden" name="receive_user" value="sam">
         <button type="submit" class="btn btn-danger">Grant Ricky ticket to Sam</button>
     </form>
 
     <br/>
 
+    <form th:action="@{/user/ricky/set_loyalty_point}" method="get">
+        <input type="hidden" name="count_points" value="365">
+        <button type="submit" class="btn btn-default">Set loyalty points = 365</button>
+    </form>
+
+    <br/>
+
+    <form th:action="@{/user/ricky/set_loyalty_point}" method="get">
+        <input type="hidden" name="count_points" value="315">
+        <button type="submit" class="btn btn-default">Set loyalty points = 315</button>
+    </form>
+
+    <br/>
+
     <form th:action="@{/user/ricky/open_football}" method="get">
-        <button type="submit" class="btn btn-info">Open video football</button>
+        <button type="submit" class="btn btn-info">Open video football for Ricky</button>
+    </form>
+
+    <br/>
+
+    <form th:action="@{/user/sam/open_cartoon}" method="get">
+        <button type="submit" class="btn btn-info">Open cartoon for Sam</button>
     </form>
 </div>
-
 
 </body>
 </html>

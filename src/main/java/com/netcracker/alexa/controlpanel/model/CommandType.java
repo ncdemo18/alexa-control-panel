@@ -8,5 +8,7 @@ public enum CommandType {
     GRANT_TICKET,
     TAKE_TICKET,
     HIDE_TICKETS,
-    OPEN_FOOTBALL
+    OPEN_FOOTBALL,
+    OPEN_CARTOON,
+    SET_LOYALTY_POINTS
 }

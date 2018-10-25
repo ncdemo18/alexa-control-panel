@@ -29,83 +29,59 @@
 
 <div class="form-group text-center center-block">
     <h1 style="color: forestgreen">Answer page</h1>
-    <form th:action="@{/add_answer}" th:object="${answer}" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <form th:action="@{/add_answer}" th:object="${answer}" method="post">
 
-        <input type="hidden" th:field="*{id}"/>
+                    <input type="hidden" th:field="*{id}"/>
 
-        <label for="phraseRequest" style="font: caption">User phrase request: </label>
-        <input type="text" class="form-control center-block" style="width: 300px"
-               id="phraseRequest" th:field="*{phraseRequest}"/>
-        <br/>
+                    <label for="phraseRequest" style="font: caption">User phrase request: </label>
+                    <input type="text" class="form-control center-block" style="width: 300px"
+                           id="phraseRequest" th:field="*{phraseRequest}"/>
+                    <br/>
 
-        <label for="phraseAnswer" style="font: caption">Alexa phrase answer: </label>
-        <input type="text" class="form-control center-block" style="width: 300px"
-               id="phraseAnswer" th:field="*{phraseAnswer}"/>
-        <br/>
+                    <label for="phraseAnswer" style="font: caption">Alexa phrase answer: </label>
+                    <input type="text" class="form-control center-block" style="width: 300px"
+                           id="phraseAnswer" th:field="*{phraseAnswer}"/>
+                    <br/>
 
-        <label for="userLogin">User login:</label>
-        <select id="userLogin" name="userLogin" th:field="*{userLogin}">
-            <option th:each="user : ${users}" th:value="${user.login}" th:utext="|${user.firstName} ${user.lastName}|"/>
-        </select>
-        <br>
+                    <label for="userLogin">User login:</label>
+                    <select id="userLogin" name="userLogin" th:field="*{userLogin}">
+                        <option th:each="user : ${users}" th:value="${user.login}" th:utext="|${user.firstName} ${user.lastName}|"/>
+                    </select>
+                    <br>
 
+                    <div class="list-group" id="actionsBlock">
+                    </div>
 
-       <!-- <label for="login">Choose user login:</label>
-        <select id="login" name="login">
-            <option th:each="user : ${users}" th:value="${user.login}" th:utext="|${user.firstName} ${user.lastName}|"/>
-        </select>
-        <br>
+                    <button type="submit" style="width: 80px; margin-left: 1%" class="btn btn-info" onclick="generateURL()">Ok</button>
+                    <a class="btn btn-info" th:href="@{'/show_phrase'}">Cancel</a>
 
-        <input id="userPhrase" type="text" class="form-control" placeholder="User phrase"
-               th:name="phraseRequest" th:field="*{phraseRequest}"/>
-        <br>
+                </form>
+                <br>
+            </div>
+            <div class="col-md-6">
+                <div id="actionBlock">
+                    <fieldset>
+                        <legend>Add new action</legend>
+                        <label for="templateAction">Choose name action:</label>
+                        <select id="templateAction" name="templateAction" onchange="showAction()">
+                            <option value=""> -- </option>
+                            <option th:each="action, actionStat : ${template_actions}"
+                                    th:value="${actionStat.index}" th:utext="${action.description}"/>
+                        </select>
 
-        <input id="alexaAnswer" type="text" class="form-control" placeholder="Alexa answer"
-               th:name="alexaAnswer"/>
-        <br>-->
+                        <div id="paramBlock"></div>
 
-        <div class="list-group" id="actionsBlock">
+                        <input id="urlValue" name="urlValue" type="hidden"/>
+                        <input id="idAction" name="idAction" type="hidden"/>
+                        <button type="button" class="btn btn-success" onclick="addAction()">Add</button>
+                    </fieldset>
+                </div>
+            </div>
         </div>
-
-        <!--<div id="actionBlock" style="display: none">
-
-            <label for="templateAction">Choose name action:</label>
-            <select id="templateAction" name="templateAction" onchange="showAction()">
-                <option value=""> &#45;&#45;</option>
-                <option th:each="action, actionStat : ${actions}"
-                        th:value="${actionStat.index}" th:utext="${action.description}"/>
-            </select>
-
-            <div id="paramBlock"></div>
-
-            <input id="urlValue" name="urlValue" type="hidden"/>
-            <input id="idAction" name="idAction" type="hidden"/>
-
-        </div>-->
-
-        <button type="submit" style="width: 80px; margin-left: 1%" class="btn btn-info" onclick="generateURL()">Ok</button>
-
-    </form>
-    <br>
-
-</div>
-
-<div id="actionBlock">
-    <fieldset>
-        <legend>Add new action</legend>
-        <label for="templateAction">Choose name action:</label>
-        <select id="templateAction" name="templateAction" onchange="showAction()">
-            <option value=""> -- </option>
-            <option th:each="action, actionStat : ${template_actions}"
-                    th:value="${actionStat.index}" th:utext="${action.description}"/>
-        </select>
-
-        <div id="paramBlock"></div>
-
-        <input id="urlValue" name="urlValue" type="hidden"/>
-        <input id="idAction" name="idAction" type="hidden"/>
-        <button type="button" class="btn btn-success" onclick="addAction()">Add</button>
-    </fieldset>
+    </div>
 </div>
 
 </body>

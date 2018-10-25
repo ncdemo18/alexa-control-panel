@@ -6,11 +6,28 @@
     <title>test</title>
 </head>
 <body>
-<form th:action="@{/handle_user_request}" method="post">
-    <input type="text" name="userMessage">
-    <button type="submit" class="btn btn-info">Tell</button>
+<form th:action="@{/handle_user_request}" method="post" id="messageForm">
+    <input type="text" id="text" name="userMessage">
+    <button type="submit" class="btn btn-info" onclick="sendMessage(event)">Tell</button>
 </form>
 
-</form>
+<script>
+    function sendMessage(event) {
+        var form = document.getElementById("messageForm");
+        var formData = new FormData(form);
+
+        var request = new XMLHttpRequest();
+        request.open("post", form.action, true);
+
+        request.onreadystatechange = function (e) {
+            if(request.readyState === 4 && request.status === 200) {
+                alert(request.responseText);
+            }
+        };
+        request.send(formData);
+        event.preventDefault();
+        return false;
+    }
+</script>
 </body>
 </html>

@@ -25,14 +25,18 @@ INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (4, 
 INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (5, 'Hide ticket panel on user page', 'hide_tickets');
 INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (6, 'Grant ticket to user', 'grant_ticket');
 INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (7, 'Open football for user', 'open_football');
+INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (8, 'Open cartoon for user', 'open_cartoon');
+INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (9, 'Set loyalty points', 'set_loyalty_point');
 
 INSERT INTO "public"."url_params" ("id", "name") VALUES (1, 'number_page');
 INSERT INTO "public"."url_params" ("id", "name") VALUES (2, 'name_location');
 INSERT INTO "public"."url_params" ("id", "name") VALUES (3, 'receive_user');
+INSERT INTO "public"."url_params" ("id", "name") VALUES (4, 'count_points');
 
 INSERT INTO "public"."action_param" ("id", "id_action", "id_param") VALUES (1, 2, 1);
 INSERT INTO "public"."action_param" ("id", "id_action", "id_param") VALUES (2, 3, 2);
 INSERT INTO "public"."action_param" ("id", "id_action", "id_param") VALUES (3, 6, 3);
+INSERT INTO "public"."action_param" ("id", "id_action", "id_param") VALUES (4, 9, 4);
 
 INSERT INTO "public"."locations" ("id", "location_name") VALUES (1, 'london');
 INSERT INTO "public"."locations" ("id", "location_name") VALUES (2, 'dubai');

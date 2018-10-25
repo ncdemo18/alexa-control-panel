@@ -11,19 +11,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class UserRequestController {
 
-/*@Autowired
-    private SaveService saveService;
-
-
-@MessageMapping("/start_config/{username}")
-    @SendTo("/topic/user/{username}")
-    public ConfigUserPages sendMessage(@DestinationVariable("username") String username) {
-        System.out.println(username);
-        return saveService.upload(username + "_config.json");
-    }*/
-
-
-
     @Autowired
     private UserRepository userRepository;
 
