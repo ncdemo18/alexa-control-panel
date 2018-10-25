@@ -8,5 +8,6 @@ public class AlexaControlPanelApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(AlexaControlPanelApplication.class, args);
+
     }
 }

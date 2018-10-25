@@ -1,0 +1,95 @@
+.nc-background-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #1b2936 url(bg_top.png) no-repeat;
+    background-size: 100%;
+}
+
+.bcg_img_one{
+    width: 100%;
+    z-index: 1;
+}
+
+.pt-page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: auto;
+    top: 0;
+    left: 0;
+}
+
+.page-block-gray {
+    background-color: #2f3c49;
+    display: block;
+    padding: 8%;
+}
+
+.green-box  {
+    background-color: #00a650;
+    color: #ffffff;
+    border-radius: 10%;
+    font-size: 22px;
+}
+
+.white-font {
+    color: #ffffff;
+}
+
+.red-font {
+    color: #f03b44;
+}
+
+.item-with-border {
+    border-top: 1px solid #738391;
+}
+
+.horizontal-border {
+    border-right: 1px solid #738391;
+}
+
+.gray-font {
+    color: #738391;
+}
+
+.circle {
+    border-radius: 50%;
+    border: 6px solid #f03b44;
+    width: 80px;
+    height: 80px;
+}
+
+.text-in-circle {
+    position: relative;
+    left: 31%;
+    top: -9%;
+    font-weight: bold;
+    font-size: 53px;
+    color: #f03b44;
+}
+
+.image-in-block {
+    float: left;
+    margin: auto;
+    padding-top: 5%;
+    padding-right: 5%;
+}
+
+.list-box {
+    margin-top: 0;
+}
+
+.list-box-item {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.align-element-right {
+    float: right;
+    margin-left: auto;
+}
+
+.keep-inner-div-in-border {
+    display: block;
+}

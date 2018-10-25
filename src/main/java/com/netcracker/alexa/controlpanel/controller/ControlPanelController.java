@@ -6,6 +6,7 @@ import com.netcracker.alexa.controlpanel.model.db.entity.userpage.User;
 import com.netcracker.alexa.controlpanel.repository.AlexaAnswerRepository;
 import com.netcracker.alexa.controlpanel.repository.TemplateActionRepository;
 import com.netcracker.alexa.controlpanel.repository.UserRepository;
+import com.netcracker.alexa.controlpanel.vaadin.Broadcaster;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,10 @@ public class ControlPanelController {
 
     private final Logger logger = LoggerFactory.getLogger(ControlPanelController.class);
 
-    @GetMapping("/")
+    @GetMapping("/start")
     String startPage(){
-        return "index";
+        Broadcaster.broadcast("ricky", "Hello from controller");
+        return "index1";
     }
 
     @GetMapping("/test")
