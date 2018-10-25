@@ -21,6 +21,7 @@ public class AlexaController {
     @ResponseBody
     String handleRequest(@RequestParam("userMessage") String message) {
         String phraseAnswer = "Sorry, I don't understand you";
+        message = correctUserPhrase(message);
         AlexaAnswer alexaAnswer = alexaAnswerRepository.findFirstByPhraseRequest(message);
         if (alexaAnswer != null) {
             for (ActionURL actionURL : alexaAnswer.getActions()) {
@@ -30,5 +31,8 @@ public class AlexaController {
             phraseAnswer = alexaAnswer.getPhraseAnswer();
         }
         return phraseAnswer;
+    }
+    private String correctUserPhrase(String phrase) {
+        return phrase.toLowerCase().replaceAll("[[^A-Za-zА-Яа-я]\\s]", " ").replaceAll("\\s+", " ").trim();
     }
 }
