@@ -9,7 +9,7 @@ spring:
     url: ${JDBC_DATASOURCE_URL}
     username: ${JDBC_DATASOURCE_USERNAME}
     password: ${JDBC_DATASOURCE_PASSWORD}
-#    initialization-mode : always
+    initialization-mode : always
     #url : jdbc:postgresql://localhost:5432/Alexa
     #username: postgres
     #password: 123
