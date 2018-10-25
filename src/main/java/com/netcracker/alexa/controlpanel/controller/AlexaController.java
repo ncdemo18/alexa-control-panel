@@ -33,6 +33,6 @@ public class AlexaController {
         return phraseAnswer;
     }
     private String correctUserPhrase(String phrase) {
-        return phrase.toLowerCase().replaceAll("[[^A-Za-zА-Яа-я]\\s]", " ").replaceAll("\\s+", " ").trim();
+        return phrase.toLowerCase().replaceAll("[[^A-Za-zА-Яа-я0-9]\\s]", " ").replaceAll("\\s+", " ").trim();
     }
 }

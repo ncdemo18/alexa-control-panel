@@ -79,7 +79,7 @@ public class AlexaAnswer {
     }
 
     public void correctUserPhrase(){
-        phraseRequest = phraseRequest.toLowerCase().replaceAll("[[^A-Za-zА-Яа-я]\\s]"," ").replaceAll("\\s+", " ").trim();
+        phraseRequest = phraseRequest.toLowerCase().replaceAll("[[^A-Za-zА-Яа-я0-9]\\s]"," ").replaceAll("\\s+", " ").trim();
     }
 
 }
