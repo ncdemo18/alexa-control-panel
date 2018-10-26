@@ -1,9 +1,11 @@
 package com.netcracker.alexa.controlpanel.controller;
 
+import com.netcracker.alexa.controlpanel.model.db.entity.AlexaRequest;
 import com.netcracker.alexa.controlpanel.model.db.entity.response.add.TemplateAction;
 import com.netcracker.alexa.controlpanel.model.db.entity.response.handle.AlexaAnswer;
 import com.netcracker.alexa.controlpanel.model.db.entity.userpage.User;
 import com.netcracker.alexa.controlpanel.repository.AlexaAnswerRepository;
+import com.netcracker.alexa.controlpanel.repository.AlexaRequestRepository;
 import com.netcracker.alexa.controlpanel.repository.TemplateActionRepository;
 import com.netcracker.alexa.controlpanel.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class ControlPanelController {
 
     @Autowired
     private AlexaAnswerRepository alexaAnswerRepository;
+
+    @Autowired
+    private AlexaRequestRepository alexaRequestRepository;
 
     @GetMapping("/")
     String startPage(){
@@ -76,6 +81,15 @@ public class ControlPanelController {
         return "list_phrase";
     }
 
+    @GetMapping("/show_request")
+    String showListRequest(Model model) {
+
+        List<AlexaRequest> requests = (List<AlexaRequest>) alexaRequestRepository.findAll();
+
+        model.addAttribute("alexa_requests", requests);
+        return "list_alexa_request";
+    }
+
     @GetMapping("/edit_user_phrase")
     String editUserPhrase(@RequestParam("idAnswer") long idAnswer, Model model) {
         AlexaAnswer answer = alexaAnswerRepository.findById(idAnswer).orElse(null);
@@ -98,9 +112,21 @@ public class ControlPanelController {
         return "redirect:/show_phrase";
     }
 
-    @GetMapping("/clear_all")
-    String clearAll() {
+    @PostMapping("/delete_request_phrase")
+    String deleteRequestPhrase(@RequestParam("idRequest") long idRequest) {
+        alexaRequestRepository.deleteById(idRequest);
+        return "redirect:/show_request";
+    }
+
+    @GetMapping("/clear_all_actions")
+    String clearAllActions() {
         alexaAnswerRepository.deleteAll();
+        return "redirect:/show_request";
+    }
+
+    @GetMapping("/clear_all_requests")
+    String clearAll() {
+        alexaRequestRepository.deleteAll();
         return "redirect:/show_phrase";
     }
 }
