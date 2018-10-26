@@ -121,12 +121,12 @@ public class ControlPanelController {
     @GetMapping("/clear_all_actions")
     String clearAllActions() {
         alexaAnswerRepository.deleteAll();
-        return "redirect:/show_request";
+        return "redirect:/show_phrase";
     }
 
     @GetMapping("/clear_all_requests")
     String clearAll() {
         alexaRequestRepository.deleteAll();
-        return "redirect:/show_phrase";
+        return "redirect:/show_request";
     }
 }
