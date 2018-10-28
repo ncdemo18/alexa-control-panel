@@ -1,5 +1,7 @@
 package com.netcracker.alexa.controlpanel.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
@@ -10,18 +12,18 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
+    private final Logger logger = LoggerFactory.getLogger(WebSocketConfig.class);
+
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        // endpoint to which a WebSocket client will need to connect to for the WebSocket handshake.
+        logger.info("register stomp endpoint");
         registry.addEndpoint("/alexa").setAllowedOrigins("*").withSockJS();
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        // prefix for subscribe and broadcasting requests
+        logger.info("register prefix for broker and application destination");
         registry.enableSimpleBroker("/topic");
-
-        // requests begins with "/app" are routed to @MessageMapping methods in @Controller classes.
         registry.setApplicationDestinationPrefixes("/app");
     }
 }

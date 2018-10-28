@@ -1,11 +1,5 @@
 package com.netcracker.alexa.controlpanel.service;
 
-/*
-* It is terrible
-* It is instead database
-* And it is temporary solution
-* */
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netcracker.alexa.controlpanel.model.userpage.ConfigUserPages;
 import org.springframework.stereotype.Service;
