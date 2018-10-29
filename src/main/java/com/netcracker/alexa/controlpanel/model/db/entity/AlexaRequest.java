@@ -9,7 +9,7 @@ public class AlexaRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "alexa_phrase", unique = true)
+    @Column(name = "alexa_phrase")
     private String alexaPhrase;
 
     @Column(name = "search_version")

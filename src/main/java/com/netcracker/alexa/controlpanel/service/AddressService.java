@@ -11,7 +11,11 @@ public class AddressService {
     private HttpServletRequest request;
 
     public String getFullURL(String userLogin, String url) {
-        String applicationURL = request.getRequestURL().toString();
-        return applicationURL + "user/" + userLogin + "/" + url;
+        String applicationURL = cutMethodName(request.getRequestURL().toString(), request.getRequestURI());
+        return  applicationURL + "/user/" + userLogin + "/" + url;
+    }
+
+    private String cutMethodName(String requestURL, String requestURI) {
+        return requestURL.substring(0, requestURL.length() - requestURI.length());
     }
 }
