@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Date;
+
 @RestController
 public class AlexaController {
 
@@ -43,7 +45,7 @@ public class AlexaController {
         String phraseAnswer = Constant.ANSWER_FOR_UNRECOGNIZED_REQUEST;
         String searchVersionMessage = correctUserPhrase(inputMessage);
 
-        alexaRequestRepository.save(new AlexaRequest(inputMessage, searchVersionMessage));
+        alexaRequestRepository.save(new AlexaRequest(inputMessage, searchVersionMessage, new Date()));
 
         AlexaAnswer alexaAnswer = alexaAnswerRepository.findFirstByPhraseRequest(searchVersionMessage);
         if (alexaAnswer != null) {

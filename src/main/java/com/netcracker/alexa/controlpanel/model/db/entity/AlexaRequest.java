@@ -1,6 +1,7 @@
 package com.netcracker.alexa.controlpanel.model.db.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "requests")
@@ -15,12 +16,24 @@ public class AlexaRequest {
     @Column(name = "search_version")
     private String searchVersion;
 
-    public AlexaRequest(String alexaPhrase, String searchVersion) {
+    @Column(name = "date")
+    private Date date;
+
+    public AlexaRequest(String alexaPhrase, String searchVersion, Date date) {
         this.alexaPhrase = alexaPhrase;
         this.searchVersion = searchVersion;
+        this.date = date;
     }
 
     public AlexaRequest() {
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public long getId() {
