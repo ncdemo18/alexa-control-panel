@@ -16,6 +16,13 @@ public class Location {
     @Column(name = "location_name")
     private String locationName;
 
+    public Location(@NotNull @Size(min = 1, max = 20) String locationName) {
+        this.locationName = locationName;
+    }
+
+    public Location() {
+    }
+
     public String getLocationName() {
         return locationName;
     }

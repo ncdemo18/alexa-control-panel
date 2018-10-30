@@ -5,4 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface TemplateActionRepository extends CrudRepository<TemplateAction, Long> {
     TemplateAction findFirstByDescription(String description);
+
+    boolean existsByDescription(String description);
 }

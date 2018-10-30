@@ -1,23 +1,3 @@
-/*INSERT INTO "public"."type_actions" ("id", "description") VALUES (1, 'Go to next user page');
-INSERT INTO "public"."type_actions" ("id", "description") VALUES (2, 'Jump to user page with number');
-INSERT INTO "public"."type_actions" ("id", "description") VALUES (3, 'Set user location');
-INSERT INTO "public"."type_actions" ("id", "description") VALUES (4, 'Show ticket panel on user page');
-INSERT INTO "public"."type_actions" ("id", "description") VALUES (5, 'Hide ticket panel on user page');
-INSERT INTO "public"."type_actions" ("id", "description") VALUES (6, 'Grant ticket to user');
-INSERT INTO "public"."type_actions" ("id", "description") VALUES (7, 'Open football for user');
-
-INSERT INTO "public"."type_params" ("id", "name", "required_value") VALUES (1, 'next_page', false);
-INSERT INTO "public"."type_params" ("id", "name", "required_value") VALUES (2, 'set_page', true);
-INSERT INTO "public"."type_params" ("id", "name", "required_value") VALUES (3, 'show_tickets', false);
-INSERT INTO "public"."type_params" ("id", "name", "required_value") VALUES (4, 'hide_tickets', false);
-INSERT INTO "public"."type_params" ("id", "name", "required_value") VALUES (5, 'grant_ticket', true);
-INSERT INTO "public"."type_params" ("id", "name", "required_value") VALUES (6, 'open_football', false);
-
-
-INSERT INTO "public"."action_type_param" ("id", "id_action", "id_param", "order") VALUES (1, 1, 1, 1);
-INSERT INTO "public"."answers" ("id", "phrase_request", "phrase_answer", "user_login") VALUES (1, 'next page', 'You can see result!', 'ricky');
-INSERT INTO "public"."list_actions" ("id", "id_action", "id_answer") VALUES (1, 1, 1);*/
-
 INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (1, 'Go to next user page', 'next_page');
 INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (2, 'Jump to user page with number', 'set_page');
 INSERT INTO "public"."action_templates" ("id", "description", "url") VALUES (3, 'Set user location', 'set_location');

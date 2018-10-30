@@ -30,12 +30,25 @@ public class User {
     @JoinColumn(name = "location_id")
     private Location location;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_page",
             joinColumns = @JoinColumn(name = "id_user"),
             inverseJoinColumns = @JoinColumn(name = "id_page")
     )
     private List<Page> pages = new ArrayList<>();
+
+    public User(String firstName, String lastName, String login, int countTickets, int loyaltyPoints, Location location, List<Page> pages) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.login = login;
+        this.countTickets = countTickets;
+        this.loyaltyPoints = loyaltyPoints;
+        this.location = location;
+        this.pages = pages;
+    }
+
+    public User() {
+    }
 
     public String getLogin() {
         return login;

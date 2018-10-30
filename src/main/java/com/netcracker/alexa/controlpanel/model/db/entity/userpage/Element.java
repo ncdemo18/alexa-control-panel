@@ -15,6 +15,14 @@ public class Element {
     @Column(name = "param")
     private String param;
 
+    public Element(String blockName, String param) {
+        this.blockName = blockName;
+        this.param = param;
+    }
+
+    public Element() {
+    }
+
     public String getBlockName() {
         return blockName;
     }

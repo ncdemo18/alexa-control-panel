@@ -12,6 +12,13 @@ public class URLParam {
     @Column(name = "name")
     private String name;
 
+    public URLParam(String name) {
+        this.name = name;
+    }
+
+    public URLParam() {
+    }
+
     public String getName() {
         return name;
     }

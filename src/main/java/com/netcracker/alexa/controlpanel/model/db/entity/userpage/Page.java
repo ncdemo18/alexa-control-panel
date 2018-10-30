@@ -18,6 +18,13 @@ public class Page {
     )
     private List<Element> elements = new ArrayList<>();
 
+    public Page(List<Element> elements) {
+        this.elements = elements;
+    }
+
+    public Page() {
+    }
+
     public List<Element> getElements() {
         return elements;
     }

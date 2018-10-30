@@ -17,16 +17,21 @@ public class TemplateAction {
     @Column(name = "url")
     private String url;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "action_param",
             joinColumns = @JoinColumn(name = "id_action"),
             inverseJoinColumns = @JoinColumn(name = "id_param")
     )
     private List<URLParam> URLParams = new ArrayList<>();
 
+    public TemplateAction(String description, String url) {
+        this.description = description;
+        this.url = url;
+    }
+
     public TemplateAction(){}
 
-    public TemplateAction(URLParam URLParam){
+    public void addParam(URLParam URLParam){
         URLParams.add(URLParam);
     }
 
