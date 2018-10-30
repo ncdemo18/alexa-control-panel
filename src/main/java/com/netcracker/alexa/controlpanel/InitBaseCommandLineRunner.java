@@ -2,14 +2,13 @@ package com.netcracker.alexa.controlpanel;
 
 import com.netcracker.alexa.controlpanel.model.db.entity.response.add.TemplateAction;
 import com.netcracker.alexa.controlpanel.model.db.entity.response.add.URLParam;
+import com.netcracker.alexa.controlpanel.model.db.entity.response.handle.ActionURL;
+import com.netcracker.alexa.controlpanel.model.db.entity.response.handle.AlexaAnswer;
 import com.netcracker.alexa.controlpanel.model.db.entity.userpage.Element;
 import com.netcracker.alexa.controlpanel.model.db.entity.userpage.Location;
 import com.netcracker.alexa.controlpanel.model.db.entity.userpage.Page;
 import com.netcracker.alexa.controlpanel.model.db.entity.userpage.User;
-import com.netcracker.alexa.controlpanel.repository.ElementRepository;
-import com.netcracker.alexa.controlpanel.repository.LocationRepository;
-import com.netcracker.alexa.controlpanel.repository.TemplateActionRepository;
-import com.netcracker.alexa.controlpanel.repository.UserRepository;
+import com.netcracker.alexa.controlpanel.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -31,10 +30,14 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private AlexaAnswerRepository alexaAnswerRepository;
+
     @Override
     public void run(String... args) throws Exception {
         initialActionTemplates();
         initialUsers();
+        initialStandardAlexaRequest();
     }
 
     private void initialActionTemplates() {
@@ -115,5 +118,59 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
             element = elementRepository.save(new Element(blockName, param));
         }
         return element;
+    }
+
+    private void initialStandardAlexaRequest(){
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "how many movies do i have",
+                "You have 7 movie credits available.",
+                getActions("next_page", "Go to next user page")
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "increase bandwidth to maximum",
+                "Your plan’s bandwidth will be set to 150 megabits per second. This will result in a 20 euro monthly charge to your account. Do you wish to proceed?"
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "no that ridiculous",
+                "You can triple your bandwidth for the next 3 hours. You can get this boost for 50 loyalty points. Would you like to go with this option?"
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "yes",
+                "You got it—bandwidth is tripled for the next 3 hours. Enjoy!",
+                getActions("set_loyalty_point?count_points=365", "Set loyalty points")
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "i want to watch the game tonight",
+                "Ok, you currently have on friend watching the game. Would you like to invite them?"
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "sure let s invite him",
+                "Sounds good. George has been invited. Go Arsenal!",
+                getActions("open_football", "Open football for user")
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "assign 1 to sam",
+                "Voice biometrics have been confirmed. One movie credit has been assigned to Sam.",
+                getActions("grant_ticket?receive_user=sam", "Grant ticket to user")
+        ));
+    }
+
+    private List<ActionURL> getActions(String url, String description){
+        TemplateAction templateAction = templateActionRepository.findFirstByDescription(description);
+        ActionURL actionURL = new ActionURL(url, templateAction);
+        return Arrays.asList(actionURL);
+    }
+
+    private void addAnswer(AlexaAnswer answer){
+        if(!alexaAnswerRepository.existsAlexaAnswerByPhraseRequest(answer.getPhraseRequest())) {
+            alexaAnswerRepository.save(answer);
+        }
     }
 }

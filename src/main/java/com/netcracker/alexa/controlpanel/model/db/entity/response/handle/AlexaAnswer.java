@@ -33,6 +33,13 @@ public class AlexaAnswer {
         this.phraseAnswer = phraseAnswer;
     }
 
+    public AlexaAnswer(String userLogin, String phraseRequest, String phraseAnswer,  List<ActionURL> actions) {
+        this.phraseRequest = phraseRequest;
+        this.phraseAnswer = phraseAnswer;
+        this.userLogin = userLogin;
+        this.actions = actions;
+    }
+
     public void addURL(ActionURL url) {
         actions.add(url);
     }
