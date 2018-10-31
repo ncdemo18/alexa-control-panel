@@ -7,20 +7,20 @@
     <link rel="stylesheet" type="text/css"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
-<body style="background:url('img/background.jpg');
+<body style="background:url('img/background3.jpg');
 background-repeat: no-repeat;
 background-size: 100%">
 <div style="text-align: center">
-    <br/>
+    <br/> <br/>
 
-    <form id="form_action" method="get">
-        <label for="user_select" style="color:white">Select user:</label>
-        <select id="user_select" class="form-group">
+    <form id="form_action" method="get" class="form-inline">
+        <label for="user_select" style="color:black; font-size: 24px">Select user:</label>
+        <select id="user_select" class="form-control">
             <option value="ricky">Ricky</option>
             <option value="sam">Sam</option>
         </select>
-        <label for="action_select" style="color:white">Select actionURL:</label>
-        <select id="action_select" class="form-group" onchange="selectAction()">
+        <label for="action_select" style="color:black; font-size: 24px">Select actionURL:</label>
+        <select id="action_select" style="margin-left: 15px" class="form-control" onchange="selectAction()">
             <option value="next_page">Next Page</option>
             <option value="set_page">Set Page</option>
             <option value="set_location">Set Location</option>
@@ -31,9 +31,9 @@ background-size: 100%">
             <option value="open_cartoon">Open Cartoon</option>
         </select>
 
-        <div id="number_page_block" style="display: none">
+        <div id="number_page_block" style="display: none; color:black; font-size: 24px">
             <label for="number_page">Select page</label>
-            <select  id="number_page" name="number_page">
+            <select id="number_page" name="number_page" class="form-control">
                 <option name="number_page" value="0">1</option>
                 <option name="number_page" value="1">2</option>
                 <option name="number_page" value="2">3</option>
@@ -42,17 +42,17 @@ background-size: 100%">
         </div>
 
 
-        <div id="location_block" style="display: none">
+        <div id="location_block" style="display: none; color:black; font-size: 24px">
             <label for="location">Select location</label>
-            <select id="location" name="name_location">
+            <select id="location" name="name_location" class="form-control">
                 <option value="london">London</option>
                 <option value="dubai">Dubai</option>
             </select>
         </div>
 
-        <div id="grant_ticket_block" style="display: none">
+        <div id="grant_ticket_block" style="display: none; color:black; font-size: 24px">
             <label for="grant_ticket">Select receive user</label>
-            <select id="grant_ticket" name="receive_user">
+            <select id="grant_ticket" name="receive_user" class="form-control">
                 <option value="sam">Sam</option>
                 <option value="ricky">Ricky</option>
             </select>
@@ -76,10 +76,11 @@ background-size: 100%">
         var grantTicketElement = document.getElementById("grant_ticket");
 
         var formActionElement = document.getElementById("form_action");
-        function selectAction(){
+
+        function selectAction() {
             hideOptionsBlocks();
             let opt = selectActionElement.options[selectActionElement.selectedIndex];
-            switch(opt.value){
+            switch (opt.value) {
                 case "set_page":
                     numberPageBlock.style.display = "";
                     break;
@@ -102,7 +103,7 @@ background-size: 100%">
         function doAction() {
             let username = selectUserElement.options[selectUserElement.selectedIndex].value;
             let actionOpt = selectActionElement.options[selectActionElement.selectedIndex].value;
-            switch(actionOpt){
+            switch (actionOpt) {
                 case "next_page":
                     formActionElement.action = "/user/" + username + "/next_page";
                     break;
@@ -135,113 +136,105 @@ background-size: 100%">
 
     </script>
 
-    <a class="btn btn-success" th:href="@{'/show_request'}">List requests</a>
-    <a class="btn btn-success" th:href="@{'/show_phrase'}">List phrase</a>
-    <a class="btn btn-success" th:href="@{'/add_answer'}">Add phrase page</a>
+    <br/> <br/> <br/>
 
-    <br/>
-    <br/>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <fieldset>
+                    <legend style="color:black; font-size: 30px">Show list of request from users</legend>
+                    <a class="btn btn-success" th:href="@{'/show_request'}">List requests</a>
+                </fieldset>
+            </div>
+            <div class="col-md-6">
+                <fieldset>
+                    <legend style="color:black; font-size: 30px">Alexa answers</legend>
+                    <a class="btn btn-success" th:href="@{'/show_phrase'}">List phrase</a>
+                    <a class="btn btn-success" th:href="@{'/add_answer'}">Add new phrase</a>
+                </fieldset>
+            </div>
+        </div>
+        <br/> <br/> <br/>
+        <div class="row">
+            <div class="col-md-6">
+                <fieldset>
+                    <legend style="color:black; font-size: 30px">Football</legend>
+                    <div class="col-md-6">
+                        <a class="btn btn-success" th:href="@{'/add_football_score/left'}">Add left part score</a>
+                        <br/> <br/>
+                        <a class="btn btn-success" th:href="@{'/add_football_score/right'}">Add right part score</a>
+                        <br/> <br/>
+                        <a class="btn btn-success" th:href="@{'/reset_football_score'}">Reset score</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-success" th:href="@{'/user/ricky/open_football'}">Open video football for Ricky</a>
+                        <br/> <br/>
+                        <a class="btn btn-success" th:href="@{'/football_modal/arsenal'}">Modal arsenal</a>
+                        <br/> <br/>
+                        <a class="btn btn-success" th:href="@{'/football_modal/manchester'}">Modal manchester</a>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-md-6">
+                <fieldset>
+                    <legend style="color:black; font-size: 30px">For Ricky</legend>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a class="btn btn-success" th:href="@{'/user/ricky/next_page'}">Next Step Ricky</a>
+                            <br/> <br/>
+                            <form th:action="@{/user/ricky/set_page}" method="get">
+                                <input type="hidden" name="number_page" value="0">
+                                <button type="submit" class="btn btn-success">Ricky First page</button>
+                            </form>
+                        </div>
+                        <div class="col-md-3">
+                            <a class="btn btn-success" th:href="@{'/user/ricky/show_tickets'}">Show tickets</a>
+                            <br/> <br/>
+                            <a class="btn btn-success" th:href="@{'/user/ricky/hide_tickets'}">Hide tickets</a>
+                        </div>
+                        <div class="col-md-3">
+                            <form th:action="@{/user/ricky/set_location}" method="get">
+                                <input type="hidden" name="name_location" value="london">
+                                <button type="submit" class="btn btn-success">Location London</button>
+                            </form>
+                            <br/>
+                            <form th:action="@{/user/ricky/set_location}" method="get">
+                                <input type="hidden" name="name_location" value="dubai">
+                                <button type="submit" class="btn btn-success">Location Dubai</button>
+                            </form>
+                        </div>
+                        <div class="col-md-3">
+                            <form th:action="@{/user/ricky/set_loyalty_point}" method="get">
+                                <input type="hidden" name="count_points" value="365">
+                                <button type="submit" class="btn btn-success">Loyalty points = 365</button>
+                            </form>
+                            <br/>
+                            <form th:action="@{/user/ricky/set_loyalty_point}" method="get">
+                                <input type="hidden" name="count_points" value="315">
+                                <button type="submit" class="btn btn-success">Loyalty points = 315</button>
+                            </form>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <form th:action="@{/user/ricky/grant_ticket}" method="get">
+                            <input type="hidden" name="receive_user" value="sam">
+                            <button type="submit" class="btn btn-success">Grant Ricky ticket to Sam</button>
+                        </form>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <br/> <br/> <br/> <br/>
+        <div class="row">
+            <fieldset>
+                <legend style="color:black; font-size: 30px">For Sam</legend>
+                <a class="btn btn-success" th:href="@{'/user/sam/open_cartoon'}">Open cartoon for Sam</a>
+            </fieldset>
 
+        </div>
 
-    <form th:action="@{'/add_football_score/left'}" method="get">
-        <button type="submit" class="btn btn-info">Add left part score</button>
-    </form>
-
-    <br/>
-
-    <form th:action="@{/add_football_score/right}" method="get">
-        <button type="submit" class="btn btn-info">Add right part score</button>
-    </form>
-
-    <br/>
-
-    <form th:action="@{/reset_football_score}" method="get">
-        <button type="submit" class="btn btn-info">Reset score</button>
-    </form>
-
-    <br/>
-
-    <form th:action="@{/football_modal/arsenal}" method="get">
-        <button type="submit" class="btn btn-info">Modal arsenal</button>
-    </form>
-
-    <br/>
-
-    <form th:action="@{/football_modal/manchester}" method="get">
-        <button type="submit" class="btn btn-info">Modal manchester</button>
-    </form>
-
-    <br/>
-
-    <form th:action="@{/user/ricky/next_page}" method="get">
-        <button type="submit" class="btn btn-success">Next Step Ricky</button>
-    </form>
-
-    <br/>
-
-    <form th:action="@{/user/ricky/set_page}" method="get">
-        <input type="hidden" name="number_page" value="0">
-        <button type="submit" class="btn btn-success">Ricky first page</button>
-    </form>
-
-    <br/>
-
-    <form th:action="@{/user/ricky/set_location}" method="get">
-        <input type="hidden" name="name_location" value="london">
-        <button type="submit" class="btn btn-default">Set location London</button>
-    </form>
-
-    <br/>
-
-    <form th:action="@{/user/ricky/set_location}" method="get">
-        <input type="hidden" name="name_location" value="dubai">
-        <button type="submit" class="btn btn-default">Set location Dubai</button>
-    </form>
-
-    <br/>
-
-    <form th:action="@{/user/ricky/show_tickets}" method="get">
-        <button type="submit" class="btn btn-danger">Show tickets</button>
-    </form>
-
-    <br/>
-
-    <form th:action="@{/user/ricky/hide_tickets}" method="get">
-        <button type="submit" class="btn btn-danger">Hide tickets</button>
-    </form>
-
-    <br/>
-
-    <form th:action="@{/user/ricky/grant_ticket}" method="get">
-        <input type="hidden" name="receive_user" value="sam">
-        <button type="submit" class="btn btn-danger">Grant Ricky ticket to Sam</button>
-    </form>
-
-    <br/>
-
-    <form th:action="@{/user/ricky/set_loyalty_point}" method="get">
-        <input type="hidden" name="count_points" value="365">
-        <button type="submit" class="btn btn-default">Set loyalty points = 365</button>
-    </form>
-
-    <br/>
-
-    <form th:action="@{/user/ricky/set_loyalty_point}" method="get">
-        <input type="hidden" name="count_points" value="315">
-        <button type="submit" class="btn btn-default">Set loyalty points = 315</button>
-    </form>
-
-    <br/>
-
-    <form th:action="@{/user/ricky/open_football}" method="get">
-        <button type="submit" class="btn btn-info">Open video football for Ricky</button>
-    </form>
-
-    <br/>
-
-    <form th:action="@{/user/sam/open_cartoon}" method="get">
-        <button type="submit" class="btn btn-info">Open cartoon for Sam</button>
-    </form>
+    </div>
 </div>
 
 </body>
