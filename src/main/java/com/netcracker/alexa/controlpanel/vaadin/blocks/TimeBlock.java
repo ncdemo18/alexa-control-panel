@@ -22,7 +22,6 @@ public class TimeBlock extends VerticalLayout {
         String minutes = getTimeWithNullPrefix(now.get(Calendar.MINUTE));
         String fullTime = hours + ":"  + minutes + " " + getTimeSuffix(now.get(Calendar.HOUR_OF_DAY));
 
-
         Span weekDayLine = new Span(weekName);
         weekDayLine.addClassName("font-gray");
 

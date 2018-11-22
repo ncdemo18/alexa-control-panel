@@ -31,7 +31,6 @@ public class NewBlock extends VerticalLayout {
             this.image = new Image(newItem.getSrcImage(), Constant.IMAGE_NOT_FOUND);
             image.addClassName("image-in-block");
             Div newCard = new Div(image, newInfo);
-            //HorizontalLayout newCard = new HorizontalLayout(image, newInfo);
             add(newCard);
         } else {
             add(newInfo);

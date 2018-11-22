@@ -20,6 +20,11 @@
     left: 0;
 }
 
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent; /* make scrollbar transparent */
+}
+
 .page-block-gray {
     background-color: #2f3c49;
     display: block;
