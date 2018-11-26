@@ -1,6 +1,8 @@
 package com.netcracker.alexa.controlpanel.service;
 
 import com.netcracker.alexa.controlpanel.exception.InvalidLocationDateException;
+import com.netcracker.alexa.controlpanel.model.db.entity.userpage.Location;
+import com.netcracker.alexa.controlpanel.repository.LocationRepository;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -8,6 +10,7 @@ import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,15 +24,20 @@ import java.util.List;
 public class GitService {
     private static final Logger logger = LoggerFactory.getLogger(GitService.class);
 
-    private static final String REMOTE_URL = "https://github.com/ncdemo18/testJGitRepository.git";
+    private static final String REMOTE_URL = "https://github.com/ncdemo18/ncdemo18.github.io.git";
     private static final String USERNAME = "ncdemo18";
-    private static final String PASSWORD = "123Abc++";
+
+    @Value("${GIT_PASSWORD}")
+    private String PASSWORD;
 
     @Autowired
     private ValidateLocationService validateService;
 
     @Autowired
     private NameLocationResolverService nameService;
+
+    @Autowired
+    private LocationRepository locationRepository;
 
     public void addLocationOnRepository(String nameLocation, List<MultipartFile> files) throws GitAPIException, IOException, InvalidLocationDateException {
         validateService.checkCorrectLocationDate(nameLocation, files);
@@ -57,7 +65,13 @@ public class GitService {
 
             result.push().setCredentialsProvider(new UsernamePasswordCredentialsProvider(USERNAME, PASSWORD)).call();
             logger.info("Pushed from repository {} to remote repository at {}", result.getRepository().getDirectory(), REMOTE_URL);
+
+            Location location = new Location(nameLocation);
+            if(!locationRepository.existsByLocationName(location.getLocationName())) {
+                locationRepository.save(location);
+            }
+        } finally {
+            FileUtils.deleteDirectory(localPath.toFile());
         }
-        FileUtils.deleteDirectory(localPath.toFile());
     }
 }
