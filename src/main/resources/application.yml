@@ -41,6 +41,15 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
 
-
-
 ---
+
+# ===============================
+# FILE SIZE
+# ===============================
+
+spring:
+  servlet:
+    multipart:
+      max-request-size: 20MB
+      max-file-size: 5MB
+
