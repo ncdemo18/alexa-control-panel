@@ -33,7 +33,7 @@ public class UploadController {
             gitService.addLocationOnRepository(nameLocation, files);
         } catch (InvalidLocationDateException ex) {
             model.addAttribute("textError", ex.getMessage());
-            return "error";
+            return "add_location_error";
         }
         return "redirect:/addLocationFiles";
     }

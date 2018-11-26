@@ -4,10 +4,7 @@ import com.netcracker.alexa.controlpanel.model.db.entity.AlexaRequest;
 import com.netcracker.alexa.controlpanel.model.db.entity.response.add.TemplateAction;
 import com.netcracker.alexa.controlpanel.model.db.entity.response.handle.AlexaAnswer;
 import com.netcracker.alexa.controlpanel.model.db.entity.userpage.User;
-import com.netcracker.alexa.controlpanel.repository.AlexaAnswerRepository;
-import com.netcracker.alexa.controlpanel.repository.AlexaRequestRepository;
-import com.netcracker.alexa.controlpanel.repository.TemplateActionRepository;
-import com.netcracker.alexa.controlpanel.repository.UserRepository;
+import com.netcracker.alexa.controlpanel.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +26,17 @@ public class ControlPanelController {
 
     private final AlexaRequestRepository alexaRequestRepository;
 
+    private final LocationRepository locationRepository;
+
     private final Logger logger = LoggerFactory.getLogger(ControlPanelController.class);
 
     @Autowired
-    public ControlPanelController(UserRepository userRepository, TemplateActionRepository templateActionRepository, AlexaAnswerRepository alexaAnswerRepository, AlexaRequestRepository alexaRequestRepository) {
+    public ControlPanelController(UserRepository userRepository,
+                                  TemplateActionRepository templateActionRepository,
+                                  AlexaAnswerRepository alexaAnswerRepository,
+                                  AlexaRequestRepository alexaRequestRepository,
+                                  LocationRepository locationRepository) {
+        this.locationRepository = locationRepository;
         logger.info("constructor for ControlPanelController");
         this.userRepository = userRepository;
         this.templateActionRepository = templateActionRepository;
@@ -41,8 +45,9 @@ public class ControlPanelController {
     }
 
     @GetMapping("/")
-    String startPage(){
+    String startPage(Model model){
         logger.info("in method annotated @GetMapping('/')");
+        model.addAttribute("locations", locationRepository.findAll());
         return "index";
     }
 

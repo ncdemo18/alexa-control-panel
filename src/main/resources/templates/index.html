@@ -45,8 +45,9 @@ background-size: 100%">
         <div id="location_block" style="display: none; color:black; font-size: 24px">
             <label for="location">Select location</label>
             <select id="location" name="name_location" class="form-control">
-                <option value="london">London</option>
-                <option value="dubai">Dubai</option>
+                <option th:each="location: ${locations}" th:value="${location.locationName}" th:utext="${location.locationName}"/>
+                <!--<option value="london">London</option>
+                <option value="dubai">Dubai</option>-->
             </select>
         </div>
 
