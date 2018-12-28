@@ -4,19 +4,156 @@
 <head>
     <meta charset="UTF-8">
     <title>Control panel</title>
-    <link rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css"
+          href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="/webjars/jquery/3.2.1/jquery.min.js" defer></script>
+    <script src="/webjars/bootstrap/3.3.7/js/modal.js" defer></script>
+
+    <style>
+        .inputDnD .form-control-file {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 6em;
+            outline: none;
+            visibility: hidden;
+            cursor: pointer;
+            background-color: #c61c23;
+            box-shadow: 0 0 5px solid currentColor;
+        }
+
+        .inputDnD .form-control-file:before {
+            content: attr(data-title);
+            position: absolute;
+            top: 0.5em;
+            left: 0;
+            width: 100%;
+            min-height: 6em;
+            line-height: 2em;
+            padding-top: 1.5em;
+            opacity: 1;
+            visibility: visible;
+            text-align: center;
+            border: 0.25em dashed currentColor;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+        }
+
+        .inputDnD .form-control-file:hover:before {
+            border-style: solid;
+            box-shadow: inset 0px 0px 0px 0.25em currentColor;
+        }
+    </style>
+
 </head>
-<body>
-<form method="post" enctype="multipart/form-data" action="/addLocationFiles">
-    <label for="name-location">Location name:</label>
-    <br/>
-    <input type="text" name="name-location" id="name-location">
-    <br/>
-    <label for="files">File to upload:</label>
-    <br/>
-    <input type="file" name="files" id="files" multiple>
-    <br/> <br/>
-    <input type="submit" value="Upload">
-</form>
+<body style="background:url('img/background3.jpg');
+background-repeat: no-repeat;
+background-size: 100%">
+<div class="container">
+    <form method="post" enctype="multipart/form-data" action="/testUpload" onsubmit="validateDate(event)">
+        <div class="row">
+            <div>
+                <h2>Upload location files</h2>
+                To create a new location you need:
+                <br/>
+                * Enter location name
+                <br/>
+                * Drag image files on drag&drop zone with accordingly name of Ricky page.
+                <br/>
+                * Press "Upload location in repository"
+            </div>
+            <br/><br/>
+            <h4>Location name:</h4>
+            <input type="text" class="form-control" style="width: 650px" id="name-location" name="name-location"/>
+            <br/>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>First Ricky page</h4>
+                <div class="form-group inputDnD">
+                    <input type="file" class="form-control-file text-primary font-weight-bold"
+                           name="file-first" id="file-first" accept="image/*" onchange="setFileName(this)"
+                           data-title="Drag and drop a file">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <h4>Second Ricky page</h4>
+                <div class="form-group inputDnD">
+                    <input type="file" class="form-control-file text-primary font-weight-bold"
+                           name="file-second" id="file-second" accept="image/*" onchange="setFileName(this)"
+                           data-title="Drag and drop a file">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Third Ricky page</h4>
+                <div class="form-group inputDnD">
+                    <input type="file" class="form-control-file text-primary font-weight-bold"
+                           name="file-third" id="file-third" accept="image/*" onchange="setFileName(this)"
+                           data-title="Drag and drop a file">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <h4>Fourth Ricky page</h4>
+                <div class="form-group inputDnD">
+                    <input type="file" class="form-control-file text-primary font-weight-bold"
+                           name="file-fourth" id="file-fourth" accept="image/*" onchange="setFileName(this)"
+                           data-title="Drag and drop a file">
+                </div>
+            </div>
+        </div>
+        <br/>
+        <button type="submit" class="btn btn-sm btn-default">Upload location in repository</button>
+    </form>
+</div>
+<script>
+
+    function setFileName(input) {
+        if (input.files && input.files[0]) {
+            let imgName = input.files[0].name;
+            input.setAttribute("data-title", imgName);
+        }
+    }
+
+    function validateDate(event) {
+        let checkResult = isAllInputsEnter();
+        console.log("validate info: " + checkResult);
+        if(!checkResult) {
+            event.preventDefault();
+            alert("Please, input all date");
+        }
+    }
+
+    function isAllInputsEnter() {
+        return isNameLocationEnter() &&
+            isFileChoose("file-first") &&
+            isFileChoose("file-second") &&
+            isFileChoose("file-third") &&
+            isFileChoose("file-fourth");
+    }
+
+    function isFileChoose(id) {
+        let fileInput = document.getElementById(id);
+        let fileChoose = !!(fileInput.files && fileInput.files[0]);
+        if(!fileChoose) {
+            console.log("file " + id + ": not choose")
+        }
+        return fileChoose;
+    }
+
+    function isNameLocationEnter() {
+        let nameLocationInput = document.getElementById("name-location");
+        let isNameEnter = nameLocationInput.value !== "";
+        if(!isNameEnter) {
+            console.log("Name location don't enter")
+        }
+        return isNameEnter;
+    }
+
+</script>
 </body>
+
 </html>

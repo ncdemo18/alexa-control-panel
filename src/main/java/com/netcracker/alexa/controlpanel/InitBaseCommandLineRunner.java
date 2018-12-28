@@ -13,8 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class InitBaseCommandLineRunner implements CommandLineRunner {
@@ -50,6 +49,7 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
         createActionTemplate("Open football for user", "open_football", null);
         createActionTemplate("Open cartoon for user", "open_cartoon", null);
         createActionTemplate("Set loyalty points", "set_loyalty_point", new URLParam("count_points"));
+        createActionTemplate("Change temperature", "change_temperature", new URLParam("temperature"));
     }
 
     private void createActionTemplate(String description, String url, URLParam param) {
@@ -70,10 +70,13 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
             Location dubai = new Location("dubai");
             locationRepository.save(dubai);
 
-            User ricky = new User("Rick", "Boyle", "ricky", 6, 365, london, generateRickyPages());
+            Location rome = new Location("rome");
+            locationRepository.save(rome);
+
+            User ricky = new User("David", "Lindebergh", "ricky", 6, 365, london, generateRickyPages());
             userRepository.save(ricky);
 
-            User sam = new User("Sam", "Boyle", "sam", 1, 365, london, generateSamPages());
+            User sam = new User("Alice", "Lindebergh", "sam", 1, 365, london, generateSamPages());
             userRepository.save(sam);
         }
     }
@@ -86,19 +89,23 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
         ));
 
         Page rickyPage2 = new Page(Arrays.asList(
+                createElement("user_name", ""),
                 createElement("time_block", "left"),
                 createElement("scroll_image", "2 Lock Screen"),
                 createElement("score_block", "0 : 0"),
-                createElement("loyalty_block", "365")
+                createElement("loyalty_block loyalty_down", "365")
         ));
 
         Page rickyPage3 = new Page(Arrays.asList(
-                createElement("loyalty_block", "365"),
+                createElement("user_name", ""),
+                createElement("temperature_block", "26°"),
+                createElement("loyalty_block loyalty_up", "365"),
                 createElement("scroll_image", "3 Media Center")
         ));
 
         Page rickyPage4 = new Page(Arrays.asList(
-                createElement("loyalty_block", "365"),
+                createElement("user_name", ""),
+                createElement("loyalty_block loyalty_up", "365"),
                 createElement("scroll_image", "5 Match page")
         ));
 
@@ -107,6 +114,7 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
 
     private List<Page> generateSamPages() {
         Page samPage = new Page(Arrays.asList(
+                createElement("user_name", ""),
                 createElement("scroll_image_video", "10 Media Center - Pass recieved")
         ));
         return Arrays.asList(samPage);
@@ -121,12 +129,53 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
     }
 
     private void initialStandardAlexaRequest(){
+        Map<String, String> list = new HashMap<>();
+        list.put("set_page?number_page=2", "Jump to user page with number");
+        list.put("show_tickets", "Show ticket panel on user page");
         addAnswer(new AlexaAnswer(
                 "ricky",
                 "how many movies do i have",
                 "You have 7 movie credits available.",
-                getActions("next_page", "Go to next user page")
+                getActions(list)
+
         ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "assign 1 to alice",
+                "Voice biometrics have been confirmed. One movie credit has been assigned to Alice.",
+                getActions("grant_ticket?receive_user=sam", "Grant ticket to user")
+        ));
+
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "what is the temperature in alices room",
+                "It is 16 degrees Celcius"
+        ));
+
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "make it 19 degrees",
+                "Done.",
+                getActions("change_temperature?temperature=19", "Change temperature")
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "i want to watch tonights game between arsenal and everton",
+                "As you wish."
+        ));
+
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "dim the lights in the living room",
+                "Done."
+        ));
+
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "stop the game",
+                "Done."
+        ));
+
         addAnswer(new AlexaAnswer(
                 "ricky",
                 "increase bandwidth to maximum",
@@ -154,18 +203,22 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "Sounds good. George has been invited. Go Arsenal!",
                 getActions("open_football", "Open football for user")
         ));
-        addAnswer(new AlexaAnswer(
-                "ricky",
-                "assign 1 to sam",
-                "Voice biometrics have been confirmed. One movie credit has been assigned to Sam.",
-                getActions("grant_ticket?receive_user=sam", "Grant ticket to user")
-        ));
     }
 
     private List<ActionURL> getActions(String url, String description){
         TemplateAction templateAction = templateActionRepository.findFirstByDescription(description);
         ActionURL actionURL = new ActionURL(url, templateAction);
         return Arrays.asList(actionURL);
+    }
+
+    private List<ActionURL> getActions(Map<String, String> list){
+        List<ActionURL> actions = new ArrayList<>();
+        for(String url: list.keySet()){
+            TemplateAction templateAction = templateActionRepository.findFirstByDescription(list.get(url));
+            ActionURL actionURL = new ActionURL(url, templateAction);
+            actions.add(actionURL);
+        }
+        return actions;
     }
 
     private void addAnswer(AlexaAnswer answer){

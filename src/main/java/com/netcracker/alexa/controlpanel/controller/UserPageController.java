@@ -76,6 +76,13 @@ public class UserPageController {
         return "redirect:/";
     }
 
+    @GetMapping("/change_temperature")
+    String change(@PathVariable("username") String username, @RequestParam("temperature") String temperature){
+        logger.info("change temperature for {}", username);
+        sendingOperations.convertAndSend("/topic/user/" + username, new Command(CommandType.CHANGE_TEMPERATURE, temperature));
+        return "redirect:/";
+    }
+
     @GetMapping("/set_loyalty_point")
     String setLoyaltyPoints(@PathVariable("username") String username, @RequestParam("count_points") String countPoints){
         logger.info("set loyalty_points = {} for {}", countPoints, username);

@@ -13,7 +13,7 @@ background-size: 100%">
 <div style="text-align: center">
     <br/> <br/>
 
-    <form id="form_action" method="get" class="form-inline">
+    <form id="form_action" method="get" class="form-inline" onsubmit="doAction()">
         <label for="user_select" style="color:black; font-size: 24px">Select user:</label>
         <select id="user_select" class="form-control">
             <option value="ricky">Ricky</option>
@@ -23,6 +23,7 @@ background-size: 100%">
         <select id="action_select" style="margin-left: 15px" class="form-control" onchange="selectAction()">
             <option value="next_page">Next Page</option>
             <option value="set_page">Set Page</option>
+            <option value="change_temperature">Change temperature</option>
             <option value="set_location">Set Location</option>
             <option value="show_tickets">Show Ticket</option>
             <option value="hide_tickets">Hide Ticket</option>
@@ -30,6 +31,10 @@ background-size: 100%">
             <option value="open_football">Open Football</option>
             <option value="open_cartoon">Open Cartoon</option>
         </select>
+
+        <div id="temperature_block" style="display: none; color:black; font-size: 24px">
+            <input type="text" id="temperature" name="temperature">
+        </div>
 
         <div id="number_page_block" style="display: none; color:black; font-size: 24px">
             <label for="number_page">Select page</label>
@@ -46,8 +51,6 @@ background-size: 100%">
             <label for="location">Select location</label>
             <select id="location" name="name_location" class="form-control">
                 <option th:each="location: ${locations}" th:value="${location.locationName}" th:utext="${location.locationName}"/>
-                <!--<option value="london">London</option>
-                <option value="dubai">Dubai</option>-->
             </select>
         </div>
 
@@ -59,7 +62,7 @@ background-size: 100%">
             </select>
         </div>
 
-        <button type="submit" class="btn btn-success" onclick="doAction()">Ok</button>
+        <button type="submit" class="btn btn-success">Ok</button>
 
     </form>
 
@@ -72,6 +75,9 @@ background-size: 100%">
 
         var locationBlock = document.getElementById("location_block");
         var locationElement = document.getElementById("location");
+
+        var temperatureBlock = document.getElementById("temperature_block");
+        var temperatureElement = document.getElementById("temperature");
 
         var grantTicketBlock = document.getElementById("grant_ticket_block");
         var grantTicketElement = document.getElementById("grant_ticket");
@@ -92,6 +98,8 @@ background-size: 100%">
                 case "next_step":
                     grantTicketBlock.style.display = "";
                     break;
+                case "change_temperature":
+                    temperatureBlock.style.display = "";
             }
         }
 
@@ -99,6 +107,7 @@ background-size: 100%">
             numberPageBlock.style.display = "none";
             locationBlock.style.display = "none";
             grantTicketBlock.style.display = "none";
+            temperatureBlock.style.display = "none";
         }
 
         function doAction() {
@@ -132,6 +141,9 @@ background-size: 100%">
                 case "open_cartoon":
                     formActionElement.action = "/user/" + username + "/open_cartoon";
                     break;
+                case "change_temperature":
+                    let temperature = temperatureElement.value;
+                    formActionElement.action = "/user/" + username + "/change_temperature?temperature=" + temperature;
             }
         }
 
@@ -218,10 +230,18 @@ background-size: 100%">
                     </div>
                     <br/>
                     <div class="row">
-                        <form th:action="@{/user/ricky/grant_ticket}" method="get">
-                            <input type="hidden" name="receive_user" value="sam">
-                            <button type="submit" class="btn btn-success">Grant Ricky ticket to Sam</button>
-                        </form>
+                        <div class="col-md-6">
+                            <form th:action="@{/user/ricky/grant_ticket}" method="get">
+                                <input type="hidden" name="receive_user" value="sam">
+                                <button type="submit" class="btn btn-success">Grant Ricky ticket to Sam</button>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <form th:action="@{/user/ricky/change_temperature}" method="get">
+                                <input type="hidden" name="temperature" value="19">
+                                <button type="submit" class="btn btn-success">Set temperature in 19°</button>
+                            </form>
+                        </div>
                     </div>
                 </fieldset>
             </div>

@@ -10,7 +10,6 @@ import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,8 +26,8 @@ public class GitService {
     private static final String REMOTE_URL = "https://github.com/ncdemo18/ncdemo18.github.io.git";
     private static final String USERNAME = "ncdemo18";
 
-    @Value("${GIT_PASSWORD}")
-    private String PASSWORD;
+    //@Value("${GIT_PASSWORD}")
+    private String PASSWORD="123Abc++";
 
     @Autowired
     private ValidateLocationService validateService;
@@ -53,9 +52,10 @@ public class GitService {
             String strLocationFolder = "//mockup//" + nameLocation + "//bg";
             String strTargetFolder = result.getRepository().getDirectory().getParent() + strLocationFolder;
             Path directory = Files.createDirectories(Paths.get(strTargetFolder));
-            for (MultipartFile file : files) {
-                Path targetPath = directory.resolve(nameService.resolveName(file.getOriginalFilename()));
-                Files.write(targetPath, file.getBytes());
+            for (int i = 0; i < files.size(); i++) {
+                int numberPage = i + 1;
+                Path targetPath = directory.resolve(nameService.resolveName(numberPage));
+                Files.write(targetPath, files.get(i).getBytes());
             }
 
             result.add().addFilepattern(".").call();

@@ -21,7 +21,7 @@ public class ValidateLocationService {
         if(files == null || files.size() != 4) {
             throw new InvalidLocationDateException("Count of files don't correct ");
         }
-        checkCorrectNames(files);
+        //checkCorrectNames(files);
     }
 
     private void checkCorrectNames(List <MultipartFile> files) throws InvalidLocationDateException {
