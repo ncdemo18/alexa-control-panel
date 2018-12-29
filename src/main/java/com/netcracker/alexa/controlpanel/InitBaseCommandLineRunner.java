@@ -65,7 +65,7 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
     private void initialUsers() {
         if(!userRepository.existsUserByLogin("ricky")) {
             Location london = new Location("london");
-            london = locationRepository.save(london);
+            locationRepository.save(london);
 
             Location dubai = new Location("dubai");
             locationRepository.save(dubai);
@@ -73,10 +73,13 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
             Location rome = new Location("rome");
             locationRepository.save(rome);
 
-            User ricky = new User("David", "Lindebergh", "ricky", 6, 365, london, generateRickyPages());
+            Location sweden = new Location("sweden");
+            sweden = locationRepository.save(sweden);
+
+            User ricky = new User("David", "Lindbergh", "ricky", 6, 365, sweden, generateRickyPages());
             userRepository.save(ricky);
 
-            User sam = new User("Alice", "Lindebergh", "sam", 1, 365, london, generateSamPages());
+            User sam = new User("Alice", "Lindbergh", "sam", 1, 365, sweden, generateSamPages());
             userRepository.save(sam);
         }
     }
@@ -90,15 +93,15 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
 
         Page rickyPage2 = new Page(Arrays.asList(
                 createElement("user_name", ""),
+                createElement("temperature_block", "16°"),
                 createElement("time_block", "left"),
                 createElement("scroll_image", "2 Lock Screen"),
-                createElement("score_block", "0 : 0"),
+                /*createElement("score_block", "0 : 0"),*/
                 createElement("loyalty_block loyalty_down", "365")
         ));
 
         Page rickyPage3 = new Page(Arrays.asList(
                 createElement("user_name", ""),
-                createElement("temperature_block", "26°"),
                 createElement("loyalty_block loyalty_up", "365"),
                 createElement("scroll_image", "3 Media Center")
         ));
@@ -160,7 +163,14 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
         ));
         addAnswer(new AlexaAnswer(
                 "ricky",
-                "i want to watch tonights game between arsenal and everton",
+                "show me today s games",
+                "Done.",
+                getActions("open_football", "Open football for user")
+        ));
+
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "i want to watch tonight s game between arsenal and everton",
                 "As you wish."
         ));
 
@@ -176,7 +186,7 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "Done."
         ));
 
-        addAnswer(new AlexaAnswer(
+        /*addAnswer(new AlexaAnswer(
                 "ricky",
                 "increase bandwidth to maximum",
                 "Your plan’s bandwidth will be set to 150 megabits per second. This will result in a 20 euro monthly charge to your account. Do you wish to proceed?"
@@ -196,13 +206,8 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "ricky",
                 "i want to watch the game tonight",
                 "Ok, you currently have on friend watching the game. Would you like to invite them?"
-        ));
-        addAnswer(new AlexaAnswer(
-                "ricky",
-                "sure let s invite him",
-                "Sounds good. George has been invited. Go Arsenal!",
-                getActions("open_football", "Open football for user")
-        ));
+        ));*/
+
     }
 
     private List<ActionURL> getActions(String url, String description){
