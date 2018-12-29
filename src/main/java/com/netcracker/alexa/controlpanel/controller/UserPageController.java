@@ -96,4 +96,11 @@ public class UserPageController {
         sendingOperations.convertAndSend("/topic/user/" + username, new Command(CommandType.OPEN_CARTOON));
         return "redirect:/";
     }
+
+    @GetMapping("/open_dmp")
+    String openDMP(@PathVariable("username") String username){
+        logger.info("open DMP for {}", username);
+        sendingOperations.convertAndSend("/topic/user/" + username, new Command(CommandType.OPEN_DMP));
+        return "redirect:/";
+    }
 }

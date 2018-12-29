@@ -10,6 +10,7 @@ public enum CommandType {
     HIDE_TICKETS,
     OPEN_FOOTBALL,
     OPEN_CARTOON,
+    OPEN_DMP,
     SET_LOYALTY_POINTS,
     CHANGE_TEMPERATURE
 }

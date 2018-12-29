@@ -29,6 +29,7 @@ background-size: 100%">
             <option value="hide_tickets">Hide Ticket</option>
             <option value="grant_ticket">Grant Ticket</option>
             <option value="open_football">Open Football</option>
+            <option value="open_dmp">Open DMP</option>
             <option value="open_cartoon">Open Cartoon</option>
         </select>
 
@@ -138,6 +139,9 @@ background-size: 100%">
                 case "open_football":
                     formActionElement.action = "/user/" + username + "/open_football";
                     break;
+                case "open_dmp":
+                    formActionElement.action = "/user/" + username + "/open_dmp";
+                    break;
                 case "open_cartoon":
                     formActionElement.action = "/user/" + username + "/open_cartoon";
                     break;
@@ -230,17 +234,20 @@ background-size: 100%">
                     </div>
                     <br/>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <form th:action="@{/user/ricky/grant_ticket}" method="get">
                                 <input type="hidden" name="receive_user" value="sam">
                                 <button type="submit" class="btn btn-success">Grant Ricky ticket to Sam</button>
                             </form>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <form th:action="@{/user/ricky/change_temperature}" method="get">
                                 <input type="hidden" name="temperature" value="19">
                                 <button type="submit" class="btn btn-success">Set temperature in 19°</button>
                             </form>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="btn btn-success" th:href="@{'/user/ricky/open_dmp'}">Open DMP</a>
                         </div>
                     </div>
                 </fieldset>

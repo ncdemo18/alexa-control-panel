@@ -47,6 +47,7 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
         createActionTemplate("Hide ticket panel on user page", "hide_tickets", null);
         createActionTemplate("Grant ticket to user", "grant_ticket", new URLParam("receive_user"));
         createActionTemplate("Open football for user", "open_football", null);
+        createActionTemplate("Open DMP", "open_dmp", null);
         createActionTemplate("Open cartoon for user", "open_cartoon", null);
         createActionTemplate("Set loyalty points", "set_loyalty_point", new URLParam("count_points"));
         createActionTemplate("Change temperature", "change_temperature", new URLParam("temperature"));
@@ -152,7 +153,8 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
         addAnswer(new AlexaAnswer(
                 "ricky",
                 "what is the temperature in alice s room",
-                "It is 16 degrees Celcius"
+                "It is 16 degrees Celcius",
+                getActions("set_page?number_page=1", "Jump to user page with number")
         ));
 
         addAnswer(new AlexaAnswer(
@@ -173,6 +175,13 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "i want to watch tonight s game between arsenal and everton",
                 "As you wish.",
                 getActions("open_football", "Open football for user")
+        ));
+
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "i d like to see the latest available eon offerings",
+                "As you wish.",
+                getActions("open_dmp", "Open DMP")
         ));
 
         addAnswer(new AlexaAnswer(
