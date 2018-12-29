@@ -151,7 +151,7 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
 
         addAnswer(new AlexaAnswer(
                 "ricky",
-                "what is the temperature in alices room",
+                "what is the temperature in alice s room",
                 "It is 16 degrees Celcius"
         ));
 
@@ -165,13 +165,14 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "ricky",
                 "show me today s games",
                 "Done.",
-                getActions("open_football", "Open football for user")
+                getActions("set_page?number_page=3", "Jump to user page with number")
         ));
 
         addAnswer(new AlexaAnswer(
                 "ricky",
                 "i want to watch tonight s game between arsenal and everton",
-                "As you wish."
+                "As you wish.",
+                getActions("open_football", "Open football for user")
         ));
 
         addAnswer(new AlexaAnswer(
