@@ -94,7 +94,7 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
 
         Page rickyPage2 = new Page(Arrays.asList(
                 createElement("user_name", ""),
-                createElement("temperature_block", "16°"),
+                createElement("temperature_block", "17°"),
                 createElement("time_block", "left"),
                 createElement("scroll_image", "2 Lock Screen"),
                 /*createElement("score_block", "0 : 0"),*/
@@ -153,21 +153,28 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
         addAnswer(new AlexaAnswer(
                 "ricky",
                 "what is the temperature in alice s room",
-                "It is 16 degrees Celcius",
+                "It is 17 degrees Celsius",
                 getActions("set_page?number_page=1", "Jump to user page with number")
         ));
 
         addAnswer(new AlexaAnswer(
                 "ricky",
-                "make it 19 degrees",
+                "make it 21",
                 "Done.",
-                getActions("change_temperature?temperature=19", "Change temperature")
+                getActions("change_temperature?temperature=21", "Change temperature")
         ));
         addAnswer(new AlexaAnswer(
                 "ricky",
                 "show me today s games",
                 "Done.",
                 getActions("set_page?number_page=3", "Jump to user page with number")
+        ));
+
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "show me what s on tonight",
+                "Here you go.",
+                getActions("set_page?number_page=2", "Jump to user page with number")
         ));
 
         addAnswer(new AlexaAnswer(
