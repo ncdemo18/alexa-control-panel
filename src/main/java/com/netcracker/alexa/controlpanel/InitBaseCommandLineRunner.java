@@ -74,13 +74,16 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
             Location rome = new Location("rome");
             locationRepository.save(rome);
 
-            Location sweden = new Location("sweden");
-            sweden = locationRepository.save(sweden);
+           /* Location sweden = new Location("sweden");
+            sweden = locationRepository.save(sweden);*/
 
-            User ricky = new User("David", "Lindbergh", "ricky", 6, 365, sweden, generateRickyPages());
+            Location german = new Location("german");
+            german = locationRepository.save(german);
+
+            User ricky = new User("Walter", "Lindbergh", "ricky", 6, 365, german, generateRickyPages());
             userRepository.save(ricky);
 
-            User sam = new User("Alice", "Lindbergh", "sam", 1, 365, sweden, generateSamPages());
+            User sam = new User("Emma", "Lindbergh", "sam", 1, 365, german, generateSamPages());
             userRepository.save(sam);
         }
     }
@@ -113,7 +116,13 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 createElement("scroll_image", "5 Match page")
         ));
 
-        return Arrays.asList(rickyPage1, rickyPage2, rickyPage3, rickyPage4);
+        Page rickyPage5 = new Page(Arrays.asList(
+                createElement("user_name", ""),
+                createElement("loyalty_block loyalty_up", "365"),
+                createElement("scroll_image", "5 Surf gigaspeed")
+        ));
+
+        return Arrays.asList(rickyPage1, rickyPage2, rickyPage3, rickyPage4, rickyPage5);
     }
 
     private List<Page> generateSamPages() {
@@ -150,7 +159,9 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 getActions("grant_ticket?receive_user=sam", "Grant ticket to user")
         ));
 
-        addAnswer(new AlexaAnswer(
+
+
+     /*    addAnswer(new AlexaAnswer(
                 "ricky",
                 "what is the temperature in alice s room",
                 "It is 17 degrees Celsius",
@@ -177,7 +188,7 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 getActions("set_page?number_page=2", "Jump to user page with number")
         ));
 
-        addAnswer(new AlexaAnswer(
+       addAnswer(new AlexaAnswer(
                 "ricky",
                 "i want to watch tonight s game between arsenal and everton",
                 "As you wish.",
@@ -201,14 +212,29 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "ricky",
                 "stop the game",
                 "Done."
+        ));*/
+
+       addAnswer(new AlexaAnswer(
+                "ricky",
+                "increase bandwidth to maximum",
+                "Your plan’s bandwidth will be set to 150 megabits per second. This will result in a 20 euro monthly charge to your account. Do you wish to proceed?"
         ));
 
         /*addAnswer(new AlexaAnswer(
                 "ricky",
                 "increase bandwidth to maximum",
-                "Your plan’s bandwidth will be set to 150 megabits per second. This will result in a 20 euro monthly charge to your account. Do you wish to proceed?"
-        ));
+                "Instead of temporal turbo boost I have a better idea: how about switching to more convenient internet plan?",
+                getActions("set_page?number_page=4", "Jump to user page with number")
+        ));*/
+
         addAnswer(new AlexaAnswer(
+                "ricky",
+                "yes please",
+                "Got that. Your service provider will contact you shortly with possible installation dates. Now enjoy your free turbo boost.",
+                getActions("open_football", "Open football for user")
+        ));
+
+         addAnswer(new AlexaAnswer(
                 "ricky",
                 "no that ridiculous",
                 "You can triple your bandwidth for the next 3 hours. You can get this boost for 50 loyalty points. Would you like to go with this option?"
@@ -217,13 +243,14 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "ricky",
                 "yes",
                 "You got it—bandwidth is tripled for the next 3 hours. Enjoy!",
-                getActions("set_loyalty_point?count_points=365", "Set loyalty points")
+                getActions("set_loyalty_point?count_points=315", "Set loyalty points")
         ));
         addAnswer(new AlexaAnswer(
                 "ricky",
                 "i want to watch the game tonight",
-                "Ok, you currently have on friend watching the game. Would you like to invite them?"
-        ));*/
+                "Go Fortuna!",
+                getActions("open_football", "Open football for user")
+        ));
 
     }
 

@@ -23,42 +23,66 @@ background-size: 100%;">
     </div>
     <br/>
     <div class="row">
+        <div th:if="${is_active_cjm}">
+            <a class="btn btn-default" th:href="@{'/script/change_plan?isActiveCJM=false'}">Script before active CJM</a>
+            <a class="btn btn-success" th:href="@{'/script/change_plan?isActiveCJM=true'}">Script after active CJM</a>
+
+        </div>
+        <div th:if="${is_active_cjm} == false">
+            <a class="btn btn-success" th:href="@{'/script/change_plan?isActiveCJM=false'}">Script before active CJM</a>
+            <a class="btn btn-default" th:href="@{'/script/change_plan?isActiveCJM=true'}">Script after active CJM</a>
+        </div>
+
+    </div>
+    <br/>
+    <div class="row">
         <div class="col-md-3" id="0" style="color: aliceblue;">
             <a class="btn btn-default" th:href="@{'/script/slide?number_slide=0'}">Slide 1</a>
-            <p>Start David page</p>
+            <p>Start Walter page</p>
         </div>
         <div class="col-md-3" id="1" style="color: aliceblue;">
             <a class="btn btn-default" th:href="@{'/script/slide?number_slide=1'}">Slide 2</a>
-            <p>David page with thermostat, in Alice's room 17</p>
+            <p>Walter page with thermostat, in Emma's room 17</p>
         </div>
         <div class="col-md-3" id="2" style="color: aliceblue;">
             <a class="btn btn-default" th:href="@{'/script/slide?number_slide=2'}">Slide 3</a>
-            <p>David page with thermostat, in all rooms 21</p>
+            <p>Walter page with media centre without tickets</p>
         </div>
         <div class="col-md-3" id="3" style="color: aliceblue;">
             <a class="btn btn-default" th:href="@{'/script/slide?number_slide=3'}">Slide 4</a>
-            <p>David page with media centre without tickets</p>
+            <p>Start Emma page with 0 ticket</p>
+            <p>Walter page with 7 tickets</p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-3" id="4" style="color: aliceblue;">
             <a class="btn btn-default" th:href="@{'/script/slide?number_slide=4'}">Slide 5</a>
-            <p>Start Alice page with 0 ticket</p>
-            <p>David page with 7 tickets</p>
+            <p>Emma page with 1 ticket and without ticket panel</p>
+            <p>Walter page with 6 tickets and without ticket panel</p>
         </div>
         <div class="col-md-3" id="5" style="color: aliceblue;">
             <a class="btn btn-default" th:href="@{'/script/slide?number_slide=5'}">Slide 6</a>
-            <p>Alice page with 1 ticket and without ticket panel</p>
-            <p>David page with 6 tickets and without ticket panel</p>
+            <p>Open cartoon for Emma</p>
         </div>
         <div class="col-md-3" id="6" style="color: aliceblue;">
             <a class="btn btn-default" th:href="@{'/script/slide?number_slide=6'}">Slide 7</a>
-            <p>Open cartoon for Alice</p>
+            <p>Walter media page with media and 365 points</p>
         </div>
         <div class="col-md-3" id="7" style="color: aliceblue;">
             <a class="btn btn-default" th:href="@{'/script/slide?number_slide=7'}">Slide 8</a>
-            <p>Open football for David</p>
+            <p>Walter media page with media and 315 points</p>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3" id="8" style="color: aliceblue;">
+            <a class="btn btn-default" th:href="@{'/script/slide?number_slide=8'}">Slide 9</a>
+            <p>Open football for Walter</p>
+        </div>
+        <div class="col-md-3" id="9" style="color: aliceblue;">
+            <a class="btn btn-default" th:href="@{'/script/slide?number_slide=9'}">Slide 10</a>
+            <p>Open Surf with Gigaspeed for Walter</p>
+        </div>
+
     </div>
 </div>
 <script>

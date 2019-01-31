@@ -44,10 +44,11 @@
 
                         <div class="list-group" id="actionsBlock">
                             <div th:each="action, actionStat : *{actions}">
-                                <div class="list-group-item" th:id="|actionItem-${actionStat.index}|">
+                                <div class="list-group-item" th:id="|actionItem-${actionStat.index}|" th:name="action-elem">
                                     <input type="hidden" th:field="*{actions[__${actionStat.index}__].id}"/>
                                     <input type="hidden" th:field="*{actions[__${actionStat.index}__].templateAction.id}"/>
                                     <input type="hidden" th:field="*{actions[__${actionStat.index}__].url}" th:id="|url-${actionStat.index}|"/>
+                                    <button type="button" class="close" name="delete" onclick="deleteAction(event)">&times;</button>
                                     <p th:text="*{actions[__${actionStat.index}__].templateAction.description}"></p>
                                     <br>
                                     <div th:id="|paramsBlock-${actionStat.index}|">

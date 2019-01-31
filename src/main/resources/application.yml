@@ -10,7 +10,7 @@ spring:
     username: ${JDBC_DATASOURCE_USERNAME}
     password: ${JDBC_DATASOURCE_PASSWORD}
     #initialization-mode : always
-    #url : jdbc:postgresql://localhost:5432/Alexa
+    #url : jdbc:postgresql://localhost:5432/alexa
     #username: postgres
     #password: 123
 
