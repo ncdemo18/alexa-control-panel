@@ -80,10 +80,10 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
             Location german = new Location("german");
             german = locationRepository.save(german);
 
-            User ricky = new User("Walter", "Lindbergh", "ricky", 6, 365, german, generateRickyPages());
+            User ricky = new User("Walter", "", "ricky", 6, 365, german, generateRickyPages());
             userRepository.save(ricky);
 
-            User sam = new User("Emma", "Lindbergh", "sam", 1, 365, german, generateSamPages());
+            User sam = new User("Emma", "", "sam", 1, 365, german, generateSamPages());
             userRepository.save(sam);
         }
     }
@@ -154,7 +154,7 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
         ));
         addAnswer(new AlexaAnswer(
                 "ricky",
-                "assign 1 to alice",
+                "assign 1 to emma",
                 "Voice biometrics have been confirmed. One movie credit has been assigned to Alice.",
                 getActions("grant_ticket?receive_user=sam", "Grant ticket to user")
         ));
