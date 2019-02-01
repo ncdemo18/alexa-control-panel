@@ -155,7 +155,7 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
         addAnswer(new AlexaAnswer(
                 "ricky",
                 "assign 1 to emma",
-                "Voice biometrics have been confirmed. One movie credit has been assigned to Alice.",
+                "Voice biometrics have been confirmed. One movie credit has been assigned to Emma.",
                 getActions("grant_ticket?receive_user=sam", "Grant ticket to user")
         ));
 
@@ -220,6 +220,12 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "Your plan’s bandwidth will be set to 150 megabits per second. This will result in a 20 euro monthly charge to your account. Do you wish to proceed?"
         ));
 
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "increase band with to maximum",
+                "Your plan’s bandwidth will be set to 150 megabits per second. This will result in a 20 euro monthly charge to your account. Do you wish to proceed?"
+        ));
+
         /*addAnswer(new AlexaAnswer(
                 "ricky",
                 "increase bandwidth to maximum",
@@ -231,7 +237,7 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "ricky",
                 "yes please",
                 "Got that. Your service provider will contact you shortly with possible installation dates. Now enjoy your free turbo boost.",
-                getActions("open_football", "Open football for user")
+                getActions("set_page?number_page=4", "Jump to user page with number")
         ));
 
          addAnswer(new AlexaAnswer(

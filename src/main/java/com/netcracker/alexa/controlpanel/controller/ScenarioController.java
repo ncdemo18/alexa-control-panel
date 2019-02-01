@@ -102,12 +102,13 @@ public class ScenarioController {
     String changePlan(@RequestParam("isActiveCJM") boolean isActiveCJM){
         logger.info("use plan with cjm: ", isActiveCJM);
         this.isActiveCJM = isActiveCJM;
-        save(isActiveCJM);
+        save(isActiveCJM, "increase bandwidth to maximum");
+        save(isActiveCJM, "increase band with to maximum");
         return "redirect:/script/";
     }
 
-    private void save(boolean isActiveCJM) {
-        AlexaAnswer alexaAnswer = alexaAnswerRepository.findFirstByPhraseRequest("increase bandwidth to maximum");
+    private void save(boolean isActiveCJM, String phraseRequest) {
+        AlexaAnswer alexaAnswer = alexaAnswerRepository.findFirstByPhraseRequest(phraseRequest);
         if (alexaAnswer != null) {
             if (isActiveCJM) {
                 TemplateAction templateAction = templateActionRepository.findFirstByDescription("Jump to user page with number");
