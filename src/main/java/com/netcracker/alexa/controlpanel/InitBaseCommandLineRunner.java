@@ -158,6 +158,24 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "Voice biometrics have been confirmed. One movie credit has been assigned to Emma.",
                 getActions("grant_ticket?receive_user=sam", "Grant ticket to user")
         ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "share 1 with emma",
+                "Voice biometrics have been confirmed. One movie credit has been assigned to Emma.",
+                getActions("grant_ticket?receive_user=sam", "Grant ticket to user")
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "sure 1 with emma",
+                "Voice biometrics have been confirmed. One movie credit has been assigned to Emma.",
+                getActions("grant_ticket?receive_user=sam", "Grant ticket to user")
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "chair 1 with emma",
+                "Voice biometrics have been confirmed. One movie credit has been assigned to Emma.",
+                getActions("grant_ticket?receive_user=sam", "Grant ticket to user")
+        ));
 
 
 
@@ -243,6 +261,12 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
          addAnswer(new AlexaAnswer(
                 "ricky",
                 "no that ridiculous",
+                "You can triple your bandwidth for the next 3 hours. You can get this boost for 50 loyalty points. Would you like to go with this option?"
+        ));
+
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "no that s ridiculous",
                 "You can triple your bandwidth for the next 3 hours. You can get this boost for 50 loyalty points. Would you like to go with this option?"
         ));
         addAnswer(new AlexaAnswer(
