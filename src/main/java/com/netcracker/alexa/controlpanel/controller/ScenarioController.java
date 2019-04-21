@@ -125,4 +125,9 @@ public class ScenarioController {
             }
         }
     }
+
+    @GetMapping("/o2")
+    private String o2() {
+        return "o2";
+    }
 }

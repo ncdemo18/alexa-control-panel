@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Scenario O2</title>
+    <link rel="stylesheet" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+<body style="background:url('../img/background3.jpg');
+background-repeat: no-repeat;
+background-size: 100%;">
+<div style="text-align: center; margin-top: 5%">
+    <div class="container">
+        <div class="row">
+            <a class="btn btn-success" th:href="@{'/'}" id="start">Go to main page</a>
+            <a class="btn btn-success" onclick="doOnClick('/user/o2/next_page')">Next slide</a>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-5">
+                <a class="btn btn-default" th:width="400px" onclick="doOnClick('/user/o2/set_page?number_page=0')">Slide 1</a>
+                <br> <br>
+                <img src="../img/Image 1.png" width="400px">
+            </div>
+            <div class="col-sm-5">
+                <a class="btn btn-default" th:width="400px" onclick="doOnClick('/user/o2/set_page?number_page=1')">Slide 2</a>
+                <br> <br>
+                <img src="../img/Image 2.png" width="400px">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function doOnClick(address) {
+        let request = new XMLHttpRequest();
+        let fullAddress = document.getElementById("start").href + address;
+        request.open('GET', fullAddress, true);
+        request.send();
+    }
+</script>
+</body>
+</html>

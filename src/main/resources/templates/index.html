@@ -52,7 +52,8 @@ background-size: 100%">
         <div id="location_block" style="display: none; color:black; font-size: 24px">
             <label for="location">Select location</label>
             <select id="location" name="name_location" class="form-control">
-                <option th:each="location: ${locations}" th:value="${location.locationName}" th:utext="${location.locationName}"/>
+                <option th:each="location: ${locations}" th:value="${location.locationName}"
+                        th:utext="${location.locationName}"/>
             </select>
         </div>
 
@@ -158,7 +159,12 @@ background-size: 100%">
 
     <div class="container">
         <div class="row">
-            <a class="btn btn-success" th:href="@{'/script/'}">Go to scenario</a>
+            <div class="col-md-6">
+                <a class="btn btn-success" th:href="@{'/script/'}">Ricky/Sam scenario</a>
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-success" th:href="@{'/script/o2'}">O2 scenario</a>
+            </div>
         </div>
         <br/>
         <div class="row">
@@ -189,7 +195,8 @@ background-size: 100%">
                         <a class="btn btn-success" th:href="@{'/reset_football_score'}">Reset score</a>
                     </div>
                     <div class="col-md-6">
-                        <a class="btn btn-success" th:href="@{'/user/ricky/open_football'}">Open video football for Ricky</a>
+                        <a class="btn btn-success" th:href="@{'/user/ricky/open_football'}">Open video football for
+                            Ricky</a>
                         <br/> <br/>
                         <a class="btn btn-success" th:href="@{'/football_modal/arsenal'}">Modal arsenal</a>
                         <br/> <br/>

@@ -86,6 +86,24 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
             User sam = new User("Emma", "", "sam", 1, 365, german, generateSamPages());
             userRepository.save(sam);
         }
+
+        //hardcode for o2, sorry if you see it, not only this block, but all this terrible!
+        if(!userRepository.existsUserByLogin("o2")) {
+            Location o2Location = new Location("o2");
+            o2Location = locationRepository.save(o2Location);
+            User o2User = new User("O2", "", "o2", 0, 0, o2Location, generateO2Pages());
+            userRepository.save(o2User);
+        }
+    }
+
+    private List<Page> generateO2Pages() {
+        Page o2Page1 = new Page(Arrays.asList(
+                createElement("scroll_image", "Image 1")
+        ));
+        Page o2Page2 = new Page(Arrays.asList(
+                createElement("scroll_image", "Image 2")
+        ));
+        return Arrays.asList(o2Page1, o2Page2);
     }
 
     private List<Page> generateRickyPages() {
