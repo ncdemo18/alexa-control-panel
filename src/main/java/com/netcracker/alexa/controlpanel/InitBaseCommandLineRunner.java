@@ -172,6 +172,12 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
         ));
         addAnswer(new AlexaAnswer(
                 "ricky",
+                "сколько у меня фильмов",
+                "у вас семь билетов на фильмы",
+                getActions(list)
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
                 "assign 1 to emma",
                 "Voice biometrics have been confirmed. One movie credit has been assigned to Emma.",
                 getActions("grant_ticket?receive_user=sam", "Grant ticket to user")
@@ -194,7 +200,12 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "Voice biometrics have been confirmed. One movie credit has been assigned to Emma.",
                 getActions("grant_ticket?receive_user=sam", "Grant ticket to user")
         ));
-
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "отдать 1 билет",
+                "Биометрические данные голоса подтверждены. Один билет на фильм передан.",
+                getActions("grant_ticket?receive_user=sam", "Grant ticket to user")
+        ));
 
 
      /*    addAnswer(new AlexaAnswer(
@@ -299,7 +310,12 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "Go Fortuna!",
                 getActions("open_football", "Open football for user")
         ));
-
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "я хочу посмотреть футбол",
+                "открываю",
+                getActions("open_football", "Open football for user")
+        ));
     }
 
     private List<ActionURL> getActions(String url, String description){
