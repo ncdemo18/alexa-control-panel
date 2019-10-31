@@ -163,6 +163,7 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
         Map<String, String> list = new HashMap<>();
         list.put("set_page?number_page=2", "Jump to user page with number");
         list.put("show_tickets", "Show ticket panel on user page");
+        /////////////////////////////////////////////////////////////
         addAnswer(new AlexaAnswer(
                 "ricky",
                 "how many movies do i have",
@@ -176,6 +177,21 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "у вас семь билетов на фильмы",
                 getActions(list)
         ));
+        /////////////////////////////////////////////////////////////
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "hide tickets",
+                "Ticket panel has been hidden",
+                getActions("hide_tickets", "Hide ticket panel on user page")
+
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "скрыть билеты",
+                "Панель билетов скрыта",
+                getActions("hide_tickets", "Hide ticket panel on user page")
+        ));
+        /////////////////////////////////////////////////////////////
         addAnswer(new AlexaAnswer(
                 "ricky",
                 "assign 1 to emma",
@@ -206,14 +222,47 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "Биометрические данные голоса подтверждены. Один билет на фильм передан.",
                 getActions("grant_ticket?receive_user=sam", "Grant ticket to user")
         ));
-
-
-     /*    addAnswer(new AlexaAnswer(
+        /////////////////////////////////////////////////////////////
+        addAnswer(new AlexaAnswer(
                 "ricky",
                 "what is the temperature in alice s room",
                 "It is 17 degrees Celsius",
                 getActions("set_page?number_page=1", "Jump to user page with number")
         ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "какая температура в комнате алисы",
+                "17 градусов Цельсия",
+                getActions("set_page?number_page=1", "Jump to user page with number")
+        ));
+        /////////////////////////////////////////////////////////////
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "next page",
+                "Done",
+                getActions("next_page", "Go to next user page")
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "следующая страница",
+                "Готово",
+                getActions("next_page", "Go to next user page")
+        ));
+        /////////////////////////////////////////////////////////////
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "i d like to see the latest available eon offerings",
+                "As you wish.",
+                getActions("open_dmp", "Open DMP")
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "открыть панель управления данными",
+                "Как пожелаете",
+                getActions("open_dmp", "Open DMP")
+        ));
+        /////////////////////////////////////////////////////////////
+        /* 
 
         addAnswer(new AlexaAnswer(
                 "ricky",
@@ -304,6 +353,7 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "You got it—bandwidth is tripled for the next 3 hours. Enjoy!",
                 getActions("set_loyalty_point?count_points=315", "Set loyalty points")
         ));
+        /////////////////////////////////////////////////////////////
         addAnswer(new AlexaAnswer(
                 "ricky",
                 "i want to watch the game tonight",
@@ -316,6 +366,7 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "открываю",
                 getActions("open_football", "Open football for user")
         ));
+        /////////////////////////////////////////////////////////////
     }
 
     private List<ActionURL> getActions(String url, String description){
