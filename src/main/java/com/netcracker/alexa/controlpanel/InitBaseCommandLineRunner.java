@@ -309,7 +309,7 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "stop the game",
                 "Done."
         ));*/
-
+       /////////////////////////////////////////////////////////////
        addAnswer(new AlexaAnswer(
                 "ricky",
                 "increase bandwidth to maximum",
@@ -318,24 +318,30 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
 
         addAnswer(new AlexaAnswer(
                 "ricky",
-                "increase band with to maximum",
-                "Your plan’s bandwidth will be set to 150 megabits per second. This will result in a 20 euro monthly charge to your account. Do you wish to proceed?"
+                "увеличить пропускную способность до максимума",
+                "Пропускная способность будет установлена в 150 мегабит в секунду. Стоимость этой услуги - 20 евро в месяц. Вы хотите продолжить?"
         ));
-
+        
         /*addAnswer(new AlexaAnswer(
                 "ricky",
                 "increase bandwidth to maximum",
                 "Instead of temporal turbo boost I have a better idea: how about switching to more convenient internet plan?",
                 getActions("set_page?number_page=4", "Jump to user page with number")
         ));*/
-
+        /////////////////////////////////////////////////////////////
         addAnswer(new AlexaAnswer(
                 "ricky",
-                "yes please",
+                "yes pleace",
                 "Got that. Your service provider will contact you shortly with possible installation dates. Now enjoy your free turbo boost.",
                 getActions("set_page?number_page=4", "Jump to user page with number")
         ));
-
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "да хочу",
+                "Поняла. С вами скоро свяжутся по поводу даты установки. А сейчас наслаждайтесь!",
+                getActions("set_page?number_page=4", "Jump to user page with number")
+        ));
+        /////////////////////////////////////////////////////////////
          addAnswer(new AlexaAnswer(
                 "ricky",
                 "no that ridiculous",
@@ -349,8 +355,20 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
         ));
         addAnswer(new AlexaAnswer(
                 "ricky",
+                "нет не хочу",
+                "Вы можете утроить свою пропускную способность на следующие 3 часа. Стоимость услуги - 50 очков лояльности. Вы хотите ей воспользоваться?"
+        ));
+        /////////////////////////////////////////////////////////////
+        addAnswer(new AlexaAnswer(
+                "ricky",
                 "yes",
                 "You got it—bandwidth is tripled for the next 3 hours. Enjoy!",
+                getActions("set_loyalty_point?count_points=315", "Set loyalty points")
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "хочу",
+                "Теперь ваша пропускная способность утроена на следующие 3 часа. Наслаждайтесь!",
                 getActions("set_loyalty_point?count_points=315", "Set loyalty points")
         ));
         /////////////////////////////////////////////////////////////
