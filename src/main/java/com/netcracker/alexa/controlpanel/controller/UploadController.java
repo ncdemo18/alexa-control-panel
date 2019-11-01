@@ -64,13 +64,6 @@ public class UploadController {
             Files.write(targetPath, file.getBytes());
         }
 
-        /*try {
-            gitService.addLocationOnRepository(nameLocation, files);
-        } catch (InvalidLocationDateException ex) {
-            model.addAttribute("textError", ex.getMessage());
-            return "add_location_error";
-        }*/
-
-        return "redirect:/addLocationFiles";
+        return addLocationFiles(model, nameLocation, files);
     }
 }

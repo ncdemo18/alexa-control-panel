@@ -10,6 +10,7 @@ import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,8 +27,8 @@ public class GitService {
     private static final String REMOTE_URL = "https://github.com/ncdemo18/ncdemo18.github.io.git";
     private static final String USERNAME = "ncdemo18";
 
-    //@Value("${GIT_PASSWORD}")
-    private String PASSWORD="123Abc++";
+    @Value("${GIT_PASSWORD}")
+    private String PASSWORD;
 
     @Autowired
     private ValidateLocationService validateService;
