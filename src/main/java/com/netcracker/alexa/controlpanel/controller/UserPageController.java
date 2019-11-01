@@ -2,6 +2,7 @@ package com.netcracker.alexa.controlpanel.controller;
 
 import com.netcracker.alexa.controlpanel.model.Command;
 import com.netcracker.alexa.controlpanel.model.CommandType;
+import com.netcracker.alexa.controlpanel.service.LocationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class UserPageController {
     private final Logger logger = LoggerFactory.getLogger(UserPageController.class);
 
     private final SimpMessageSendingOperations sendingOperations;
+
+    @Autowired
+    private LocationService locationService;
 
     @Autowired
     public UserPageController(SimpMessageSendingOperations sendingOperations) {
@@ -43,7 +47,9 @@ public class UserPageController {
     @GetMapping("/set_location")
     String setLocation(@PathVariable("username") String username, @RequestParam("name_location") String nameLocation){
         logger.info("set location {} for {}", nameLocation, username);
-        sendingOperations.convertAndSend("/topic/user/" + username, new Command(CommandType.SET_LOCATION, nameLocation));
+        if (locationService.setLocation(nameLocation, username)) {
+            sendingOperations.convertAndSend("/topic/user/" + username, new Command(CommandType.SET_LOCATION, nameLocation));
+        }
         return "redirect:/";
     }
 

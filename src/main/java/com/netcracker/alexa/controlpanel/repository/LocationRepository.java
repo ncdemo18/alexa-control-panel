@@ -5,4 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface LocationRepository extends CrudRepository<Location, Long> {
     boolean existsByLocationName(String locationName);
+
+    Location getFirstByLocationName(String locationName);
 }
