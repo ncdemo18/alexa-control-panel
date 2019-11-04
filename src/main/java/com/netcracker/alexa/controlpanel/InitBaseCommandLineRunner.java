@@ -235,6 +235,12 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "17 градусов Цельсия",
                 getActions("set_page?number_page=1", "Jump to user page with number")
         ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "вернуться на первую страницу",
+                "Первая страница открыта",
+                getActions("set_page?number_page=1", "Jump to user page with number")
+        ));
         /////////////////////////////////////////////////////////////
         addAnswer(new AlexaAnswer(
                 "ricky",
@@ -262,6 +268,31 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 getActions("open_dmp", "Open DMP")
         ));
         /////////////////////////////////////////////////////////////
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "show me today s games",
+                "Done.",
+                getActions("set_page?number_page=3", "Jump to user page with number")
+        ));
+         addAnswer(new AlexaAnswer(
+                "ricky",
+                "покажи кто играет сегодня",
+                "Готово.",
+                getActions("set_page?number_page=3", "Jump to user page with number")
+        ));     
+        /////////////////////////////////////////////////////////////
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "show me what s on tonight",
+                "Here you go.",
+                getActions("set_page?number_page=2", "Jump to user page with number")
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "покажи что интересного сегодня вечером",
+                "Вот, пожалуйста.",
+                getActions("set_page?number_page=2", "Jump to user page with number")
+        ));
         /* 
 
         addAnswer(new AlexaAnswer(
@@ -270,19 +301,9 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "Done.",
                 getActions("change_temperature?temperature=21", "Change temperature")
         ));
-        addAnswer(new AlexaAnswer(
-                "ricky",
-                "show me today s games",
-                "Done.",
-                getActions("set_page?number_page=3", "Jump to user page with number")
-        ));
 
-        addAnswer(new AlexaAnswer(
-                "ricky",
-                "show me what s on tonight",
-                "Here you go.",
-                getActions("set_page?number_page=2", "Jump to user page with number")
-        ));
+
+       
 
        addAnswer(new AlexaAnswer(
                 "ricky",
@@ -328,6 +349,32 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "Instead of temporal turbo boost I have a better idea: how about switching to more convenient internet plan?",
                 getActions("set_page?number_page=4", "Jump to user page with number")
         ));*/
+        /////////////////////////////////////////////////////////////
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "change location to london",
+                "You are now in London!",
+                getActions("set_location?name_location=london", "Set user location")
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "изменить локацию на лондон",
+                "Вы теперь в Лондоне!",
+                getActions("set_location?name_location=london", "Set user location")
+        ));
+        /////////////////////////////////////////////////////////////
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "change location to dubai",
+                "You are now in Dubai!",
+                getActions("set_location?name_location=dubai", "Set user location")
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "изменить локацию на дубай",
+                "Вы теперь в Дубае!",
+                getActions("set_location?name_location=dubai", "Set user location")
+        ));
         /////////////////////////////////////////////////////////////
         addAnswer(new AlexaAnswer(
                 "ricky",
