@@ -180,14 +180,14 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
         /////////////////////////////////////////////////////////////
         addAnswer(new AlexaAnswer(
                 "ricky",
-                "hide tickets",
-                "Ticket panel has been hidden",
+                "hide credits panel",
+                "Credits panel has been hidden",
                 getActions("hide_tickets", "Hide ticket panel on user page")
 
         ));
         addAnswer(new AlexaAnswer(
                 "ricky",
-                "скрыть билеты",
+                "скрыть панель билетов",
                 "Панель билетов скрыта",
                 getActions("hide_tickets", "Hide ticket panel on user page")
         ));
@@ -233,6 +233,12 @@ public class InitBaseCommandLineRunner implements CommandLineRunner {
                 "ricky",
                 "какая температура в комнате алисы",
                 "17 градусов Цельсия",
+                getActions("set_page?number_page=1", "Jump to user page with number")
+        ));
+        addAnswer(new AlexaAnswer(
+                "ricky",
+                "return to the first page",
+                "First page is opened.",
                 getActions("set_page?number_page=1", "Jump to user page with number")
         ));
         addAnswer(new AlexaAnswer(
